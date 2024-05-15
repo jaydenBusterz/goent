@@ -56,7 +56,7 @@ $(function () {
         var winY = $(window).scrollTop() + (winH / 3) * 2
         sectionSpot = [];
 
-        $('section').each(function (i, e) {
+        $('section, footer').each(function (i, e) {
             sectionSpot.push($(e).offset().top);
 
             if (winY >= sectionSpot[i] && !$(e).is('.on') && !sct == 0) {
