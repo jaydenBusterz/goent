@@ -183,6 +183,7 @@ body {
 section {
   display: flex;
   align-items: center;
+  overflow: hidden;
   position: relative;
   z-index: 1;
   padding: 50px 0;
@@ -320,6 +321,10 @@ section {
           font-size: 2vh;
           line-height: 1.2;
           color: #fff;
+        }
+
+        img {
+          max-width: 100%;
         }
       }
     }
