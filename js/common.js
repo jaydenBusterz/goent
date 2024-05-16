@@ -53,10 +53,12 @@ $(function () {
         for (j = 0; j < data[0].list.length; j++) {
             var dataList = data[0].list[j];
             var yearList = `<div class="swiper-slide">
-                        <img src="${dataList.img}" alt="페스티벌 이미지" />
+                        <div class="img-wrap">
+                            <img src="${dataList.img}" alt="페스티벌 이미지" />
+                        </div>
                         <div class="text-wrap">
-                          <p class="title">${dataList.tit}</p>
-                          <p class="date">${dataList.des}</p>
+                          <p class="tit">${dataList.tit}</p>
+                          <p class="des">${dataList.des}</p>
                         </div>
                       </div>`;
             $('.festival-swiper .swiper-wrapper').append(yearList);
@@ -131,18 +133,46 @@ $(function () {
                 for (j = 0; j < festival.responseJSON[i].list.length; j++) {
                     var dataList = festival.responseJSON[i].list[j];
                     var yearList = `<div class="swiper-slide">
-                    <img src="${dataList.img}" alt="페스티벌 이미지" />
+                    <div class="img-wrap">
+                      <img src="${dataList.img}" alt="페스티벌 이미지" />
+                    </div>
                     <div class="text-wrap">
-                      <p class="title">${dataList.tit}</p>
-                      <p class="date">${dataList.des}</p>
+                      <p class="tit">${dataList.tit}</p>
+                      <p class="des">${dataList.des}</p>
                     </div>
                   </div>`;
 
-                    console.log(dataList);
                     $('.festival-swiper .swiper-wrapper').append(yearList);
                 }
             }
         }
+    });
+
+    // festival modal
+    $(document).on('click', '.tab-cont .swiper-slide', function () {
+        $('.modal-cont').remove();
+        $('.modal').addClass('active');
+        $('html, body').addClass('noscroll');
+        var year = $('.tab-tit li.active').index();
+        var activeSlide = $(this).index();
+        var data = festival.responseJSON[year].list[activeSlide];
+        var modalData =
+            `<div class="modal-cont">
+            <div class="img-wrap">
+                <img src="${data.img}" alt="페스티벌 이미지" />
+            </div>
+            <div class="text-wrap">
+                <div class="tit">${data.tit}</div>
+                <div class="des">${data.des}</div>
+            </div>
+        </div>`;
+
+        $('.modal').append(modalData);
+    });
+
+    $('.modal').on('click', function () {
+        $('.modal').removeClass('active');
+        $('html, body').removeClass('noscroll');
     });
 
     // 스크롤 이벤트
