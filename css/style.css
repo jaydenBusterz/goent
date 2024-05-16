@@ -171,13 +171,9 @@ body {
       }
     }
 
-    .title {}
-
     .date {
       color: #e21836;
     }
-
-    .place {}
   }
 }
 
@@ -371,6 +367,7 @@ section {
 
     .about-bg {
       position: absolute;
+      top: 0;
       bottom: 0;
       left: 0;
       width: 100%;
