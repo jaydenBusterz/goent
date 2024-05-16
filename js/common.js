@@ -1,12 +1,18 @@
 $(function () {
     // 네비게이션
-    $(".nav li").on('click', function () {
-        var nav = $(this).attr("id");
-        var sectionPos = $("." + nav).offset().top;
+    $(".gnb li").on('click', function () {
+        var sectionPos = $("." + this.id).offset().top;
         $('html, body').animate({
             scrollTop: sectionPos - 50
         }, 700);
         return false;
+    });
+
+    $(".lang li").on('click', function () {
+        $('.lang li, .about .center').removeClass('active');
+        $(this).addClass('active');
+        console.log($(".about .center." + this.id));
+        $("." + this.id).addClass('active');
     });
 
     var textBanner = $.getJSON("./data/textBanner.json", function (data) {
@@ -101,7 +107,7 @@ $(function () {
         }
     });
     var festivalSwiper = new Swiper(".festival-swiper", {
-        slidesPerView: 3,
+        slidesPerView: 2.5,
         slidesPerGroup: 1,
         spaceBetween: 10,
         loop: false,
@@ -162,9 +168,9 @@ $(function () {
             }
 
             if (winY > sectionSpot[i]) {
-                $('.nav li').eq(i).addClass('active').siblings().removeClass('active')
+                $('.gnb li').eq(i).addClass('active').siblings().removeClass('active')
             } else if (sct == 0) {
-                $('.nav li').eq(0).addClass('active').siblings().removeClass('active')
+                $('.gnb li').eq(0).addClass('active').siblings().removeClass('active')
             }
         });
     })
