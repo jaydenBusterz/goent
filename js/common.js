@@ -9,7 +9,7 @@ $(function () {
         return false;
     });
 
-    var textBanner = $.getJSON("../data/textBanner.json", function (data) {
+    var textBanner = $.getJSON("./data/textBanner.json", function (data) {
         for (i = 0; i < data.textBanner.length; i++) {
             var val = data.textBanner[i];
             var list = `
@@ -25,7 +25,7 @@ $(function () {
         return data;
     });
 
-    var concert = $.getJSON("../data/concert.json", function (data) {
+    var concert = $.getJSON("./data/concert.json", function (data) {
         for (i = 0; i < data.concert.length; i++) {
             var val = data.concert[i];
             var list = `
@@ -37,7 +37,7 @@ $(function () {
         return data;
     });
 
-    var festival = $.getJSON("../data/festival.json", function (data) {
+    var festival = $.getJSON("./data/festival.json", function (data) {
         for (i = 0; i < data.length; i++) {
             var year = data[i].year;
             var list = `<li id="${year}">${year}</li>`;
