@@ -1,6 +1,6 @@
 $(function () {
     // 네비게이션
-    $(".nav li").click(function () {
+    $(".nav li").on('click', function () {
         var nav = $(this).attr("id");
         var sectionPos = $("." + nav).offset().top;
         $('html, body').animate({
@@ -9,7 +9,7 @@ $(function () {
         return false;
     });
 
-    var textBanner = $.getJSON("../textBanner.json", function (data) {
+    var textBanner = $.getJSON("../data/textBanner.json", function (data) {
         for (i = 0; i < data.textBanner.length; i++) {
             var val = data.textBanner[i];
             var list = `
@@ -25,19 +25,40 @@ $(function () {
         return data;
     });
 
-    var concertPoster = $.getJSON("../concert.json", function (data) {
-        for (i = 0; i < data.concert.length; i++) {
-            var val = data.concert[i];
-            var list = `
-            <div class="swiper-slide">
-              <img src="${val.img}" alt="포스터 이미지" />
-            </div>`;
-            $('.concert-swiper .swiper-wrapper, .concert-swiper2 .swiper-wrapper').append(list);
+    // var concert = $.getJSON("../data/concert.json", function (data) {
+    //     for (i = 0; i < data.concert.length; i++) {
+    //         var val = data.concert[i];
+    //         var list = `
+    //         <div class="swiper-slide">
+    //           <img src="${val.img}" alt="포스터 이미지" />
+    //         </div>`;
+    //         $('.concert-swiper .swiper-wrapper, .concert-swiper2 .swiper-wrapper').append(list);
+    //     }
+    //     return data;
+    // });
+
+    var festival = $.getJSON("../data/festival.json", function (data) {
+        for (i = 0; i < data.length; i++) {
+            var year = data[i].year;
+            var list = `<li id="${year}">${year}</li>`;
+            $('.tab-tit ul').append(list);
+            $('.tab-tit li').eq(0).addClass('active');
+        }
+        for (j = 0; j < data[0].list.length; j++) {
+            var dataList = data[0].list[j];
+            var yearList = `<div class="swiper-slide">
+                        <img src="${dataList.img}" alt="페스티벌 이미지" />
+                        <div class="text-wrap">
+                          <p class="title">${dataList.tit}</p>
+                          <p class="date">${dataList.des}</p>
+                        </div>
+                      </div>`;
+            $('.festival-swiper .swiper-wrapper').append(yearList);
         }
         return data;
     });
 
-    var swiper = new Swiper(".concert-swiper", {
+    var concertSwiper = new Swiper(".concert-swiper", {
         slidesPerView: 4,
         slidesPerGroup: 1,
         spaceBetween: 10,
@@ -57,7 +78,7 @@ $(function () {
             }
         }
     });
-    var swiper2 = new Swiper(".concert-swiper2", {
+    var concertSwiper2 = new Swiper(".concert-swiper2", {
         slidesPerView: 4,
         slidesPerGroup: 1,
         spaceBetween: 10,
@@ -76,6 +97,43 @@ $(function () {
         breakpoints: {
             786: {
                 slidesPerView: 6,
+            }
+        }
+    });
+    var festivalSwiper = new Swiper(".festival-swiper", {
+        slidesPerView: 3,
+        slidesPerGroup: 1,
+        spaceBetween: 10,
+        loop: false,
+        freeMode: false,
+        slidesOffsetBefore: 1,
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false
+        }
+    });
+
+    // festival tab
+    $(document).on('click', '.tab-tit li', function () {
+        $('.tab-tit li').removeClass('active');
+        $(this).addClass('active');
+
+        $('.festival-swiper .swiper-wrapper .swiper-slide').remove();
+        for (i = 0; i < festival.responseJSON.length; i++) {
+            if (this.id == festival.responseJSON[i].year) {
+                for (j = 0; j < festival.responseJSON[i].list.length; j++) {
+                    var dataList = festival.responseJSON[i].list[j];
+                    var yearList = `<div class="swiper-slide">
+                    <img src="${dataList.img}" alt="페스티벌 이미지" />
+                    <div class="text-wrap">
+                      <p class="title">${dataList.tit}</p>
+                      <p class="date">${dataList.des}</p>
+                    </div>
+                  </div>`;
+
+                    console.log(dataList);
+                    $('.festival-swiper .swiper-wrapper').append(yearList);
+                }
             }
         }
     });
