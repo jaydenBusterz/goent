@@ -247,6 +247,12 @@ section {
       width: 100%;
       padding-bottom: 5px;
 
+      &.concert-swiper2 {
+        .swiper-wrapper {
+          margin: 0 -10%;
+        }
+      }
+
       .swiper-slide {
         width: 100%;
         overflow: hidden;
