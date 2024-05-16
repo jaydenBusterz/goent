@@ -25,17 +25,17 @@ $(function () {
         return data;
     });
 
-    // var concert = $.getJSON("../data/concert.json", function (data) {
-    //     for (i = 0; i < data.concert.length; i++) {
-    //         var val = data.concert[i];
-    //         var list = `
-    //         <div class="swiper-slide">
-    //           <img src="${val.img}" alt="포스터 이미지" />
-    //         </div>`;
-    //         $('.concert-swiper .swiper-wrapper, .concert-swiper2 .swiper-wrapper').append(list);
-    //     }
-    //     return data;
-    // });
+    var concert = $.getJSON("../data/concert.json", function (data) {
+        for (i = 0; i < data.concert.length; i++) {
+            var val = data.concert[i];
+            var list = `
+            <div class="swiper-slide">
+              <img src="${val.img}" alt="포스터 이미지" />
+            </div>`;
+            $('.concert-swiper .swiper-wrapper, .concert-swiper2 .swiper-wrapper').append(list);
+        }
+        return data;
+    });
 
     var festival = $.getJSON("../data/festival.json", function (data) {
         for (i = 0; i < data.length; i++) {
@@ -107,9 +107,10 @@ $(function () {
         loop: false,
         freeMode: false,
         slidesOffsetBefore: 1,
-        autoplay: {
-            delay: 3000,
-            disableOnInteraction: false
+        breakpoints: {
+            1024: {
+                slidesPerView: 5,
+            }
         }
     });
 
