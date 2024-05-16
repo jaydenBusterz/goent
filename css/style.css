@@ -79,7 +79,7 @@ header {
 
     ul {
       li {
-        font-size: 2vh;
+        font-size: 20px;
         font-weight: bold;
         text-align: right;
         color: rgba(255, 255, 255, 0.5);
@@ -174,14 +174,14 @@ body {
       &:after {
         content: '|';
         padding-right: 10px;
-        font-size: 3vh;
+        font-size: 25px;
         font-weight: bold;
         color: #e21836;
       }
 
       strong {
         text-transform: uppercase;
-        font-size: 3vh;
+        font-size: 25px;
         font-weight: bold;
         color: #fff;
         padding-right: 5px;
@@ -249,7 +249,7 @@ section {
     h2 {
       position: absolute;
       left: 20px;
-      bottom: calc(3vh + 48px);
+      bottom: 78px;
       font-size: 11vh;
       font-weight: bold;
       color: rgba(255, 255, 255, 0.7);
@@ -322,7 +322,7 @@ section {
         li {
           display: flex;
           color: #fff;
-          font-size: 3vh;
+          font-size: 25px;
           font-weight: bold;
           padding: 10px 20px;
           align-items: center;
@@ -369,13 +369,14 @@ section {
               padding-top: 20px;
 
               .title {
-                font-size: 2vh;
+                font-size: 20px;
                 color: #fff;
                 text-transform: uppercase;
               }
 
               .date {
-                font-size: 1.65vh;
+                font-size: 16px;
+                line-height: 1.2;
                 color: #999;
                 padding-top: 5px;
                 text-transform: uppercase;
@@ -449,7 +450,7 @@ section {
         }
 
         p {
-          font-size: 2vh;
+          font-size: 20px;
           text-align: left;
           line-height: 1.5;
           padding-bottom: 15px;
@@ -584,7 +585,7 @@ footer {
       .tab-tit {
         ul {
           li {
-            font-size: 2vh;
+            font-size: 20px;
             padding: 10px 20px;
 
             &:before {
