@@ -115,9 +115,13 @@ $(function () {
         loop: false,
         freeMode: false,
         slidesOffsetBefore: 1,
+        navigation: {
+            nextEl: ".control-wrap .next-btn",
+            prevEl: ".control-wrap .prev-btn",
+        },
         breakpoints: {
             1024: {
-                slidesPerView: 5,
+                slidesPerView: 4.5,
             }
         }
     });
@@ -126,6 +130,7 @@ $(function () {
     $(document).on('click', '.tab-tit li', function () {
         $('.tab-tit li').removeClass('active');
         $(this).addClass('active');
+        festivalSwiper.slideTo(0);
 
         $('.festival-swiper .swiper-wrapper .swiper-slide').remove();
         for (i = 0; i < festival.responseJSON.length; i++) {
