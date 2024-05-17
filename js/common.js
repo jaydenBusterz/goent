@@ -36,7 +36,8 @@ $(function () {
             var val = data.nowwe[i];
             var list = `
             <div class="swiper-slide">
-              <img src="${val.img}" alt="포스터 이미지" />
+              <img src="${val.img}" alt="포스터 이미지" loading="lazy" />
+              <div class="swiper-lazy-preloader"></div>
             </div>`;
             $('.nowwe-swiper .swiper-wrapper, .nowwe-swiper2 .swiper-wrapper').append(list);
         }
@@ -54,7 +55,8 @@ $(function () {
             var dataList = data[0].list[j];
             var yearList = `<div class="swiper-slide">
                         <div class="img-wrap">
-                            <img src="${dataList.img}" alt="페스티벌 이미지" />
+                            <img src="${dataList.img}" alt="포스터 이미지" loading="lazy" />
+                            <div class="swiper-lazy-preloader"></div>
                         </div>
                         <div class="text-wrap">
                           <p class="tit">${dataList.tit}</p>
@@ -72,6 +74,10 @@ $(function () {
         spaceBetween: 10,
         loop: true,
         freeMode: false,
+        lazy: {
+            loadPrevNext: true,
+            loadPrevNextAmount: 8,
+        },
         autoplay: {
             delay: 1000,
             disableOnInteraction: false
@@ -93,6 +99,10 @@ $(function () {
         loop: true,
         freeMode: false,
         slidesOffsetBefore: 1,
+        lazy: {
+            loadPrevNext: true,
+            loadPrevNextAmount: 8,
+        },
         autoplay: {
             delay: 1000,
             disableOnInteraction: false,
@@ -115,6 +125,10 @@ $(function () {
         loop: false,
         freeMode: false,
         slidesOffsetBefore: 1,
+        lazy: {
+            loadPrevNext: true,
+            loadPrevNextAmount: 8,
+        },
         navigation: {
             nextEl: ".control-wrap .next-btn",
             prevEl: ".control-wrap .prev-btn",
@@ -139,7 +153,8 @@ $(function () {
                     var dataList = history.responseJSON[i].list[j];
                     var yearList = `<div class="swiper-slide">
                     <div class="img-wrap">
-                      <img src="${dataList.img}" alt="페스티벌 이미지" />
+                      <img src="${dataList.img}" alt="포스터 이미지" loading="lazy" />
+                      <div class="swiper-lazy-preloader"></div>
                     </div>
                     <div class="text-wrap">
                       <p class="tit">${dataList.tit}</p>
@@ -164,7 +179,8 @@ $(function () {
         var modalData =
             `<div class="modal-cont">
             <div class="img-wrap">
-                <img src="${data.img}" alt="페스티벌 이미지" />
+                <img src="${data.img}" alt="포스터 이미지" loading="lazy" />
+                <div class="swiper-lazy-preloader"></div>
             </div>
             <div class="text-wrap">
                 <div class="tit">${data.tit}</div>
