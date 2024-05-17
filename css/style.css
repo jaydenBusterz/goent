@@ -365,7 +365,7 @@ section {
     }
   }
 
-  &.concert {
+  &.nowwe {
     .section-title {
       &.active {
         transform: translateY(10%);
@@ -377,7 +377,7 @@ section {
       width: 100%;
       padding-bottom: 5px;
 
-      &.concert-swiper2 {
+      &.nowwe-swiper2 {
         .swiper-wrapper {
           margin: 0 -10%;
         }
@@ -418,7 +418,7 @@ section {
     }
   }
 
-  &.festival {
+  &.history {
     padding-bottom: 0;
 
     .control-wrap {
@@ -505,7 +505,7 @@ section {
       .cont {
         width: 100%;
 
-        .festival-swiper {
+        .history-swiper {
           width: 100%;
 
           .swiper-slide {
@@ -818,7 +818,7 @@ footer {
       }
     }
 
-    &.festival {
+    &.history {
       .control-wrap {
         top: 32px;
         right: 5px;
@@ -862,7 +862,7 @@ footer {
         padding-left: 5px;
 
         .cont {
-          .festival-swiper {
+          .history-swiper {
             .swiper-slide {
               .text-wrap {
                 padding-top: 10px;
