@@ -121,7 +121,7 @@ $(function () {
         },
         breakpoints: {
             1024: {
-                slidesPerView: 4.5,
+                slidesPerView: 5.5,
             }
         }
     });

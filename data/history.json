@@ -3,32 +3,32 @@
         "year": "2024",
         "list": [
             {
-                "img": "./img/logo-white.png",
-                "tit": "2024 tit 0",
+                "img": "./img/dummy-poster.jpg",
+                "tit": "김지훈 꼬추 3센치 0",
                 "des": "2024 des 0"
             },
             {
-                "img": "./img/logo-white.png",
+                "img": "https://i.imgur.com/AdtWxJd.jpeg",
                 "tit": "2024 tit 1",
                 "des": "2024 des 1"
             },
             {
-                "img": "./img/logo-white.png",
+                "img": "https://i.imgur.com/9pTOZld.jpeg",
                 "tit": "2024 tit 2",
                 "des": "2024 des 2"
             },
             {
-                "img": "./img/logo-white.png",
+                "img": "https://i.imgur.com/8IneA0B.jpeg",
                 "tit": "2024 tit 3",
                 "des": "2024 des 3"
             },
             {
-                "img": "./img/logo-white.png",
+                "img": "./img/dummy-poster.jpg",
                 "tit": "2024 tit 4",
                 "des": "2024 des 4"
             },
             {
-                "img": "./img/logo-white.png",
+                "img": "https://i.imgur.com/AdtWxJd.jpeg",
                 "tit": "2024 tit 5",
                 "des": "2024 des 5"
             }
