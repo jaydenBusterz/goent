@@ -273,12 +273,14 @@ body {
         display: block;
         max-width: 100%;
         max-height: 100%;
+        margin: 0 auto;
       }
     }
 
     .text-wrap {
       padding-left: 20px;
       border-left: 1px solid #777;
+      flex: auto;
 
       .tit {
         font-size: 25px;
@@ -800,6 +802,7 @@ footer {
 
         .des {
           font-size: 11px;
+          padding-top: 10px;
         }
       }
     }
