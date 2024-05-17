@@ -179,8 +179,7 @@ $(function () {
         var modalData =
             `<div class="modal-cont">
             <div class="img-wrap">
-                <img src="${data.img}" alt="포스터 이미지" loading="lazy" />
-                <div class="swiper-lazy-preloader"></div>
+                <img src="${data.img}" alt="포스터 이미지"/>
             </div>
             <div class="text-wrap">
                 <div class="tit">${data.tit}</div>
