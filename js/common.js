@@ -163,6 +163,8 @@ $(function () {
                   </div>`;
 
                     $('.history-swiper .swiper-wrapper').append(yearList);
+
+                    $('.swiper-slide').focus().addClass('active');
                 }
             }
         }

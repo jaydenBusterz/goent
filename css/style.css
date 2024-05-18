@@ -503,6 +503,7 @@ section {
     .tab-cont {
       min-width: calc(100% - 200px);
       padding-left: 20px;
+      transition: all 2s;
 
       .cont {
         width: 100%;
@@ -512,6 +513,13 @@ section {
 
           .swiper-slide {
             cursor: pointer;
+            transition: all 0.7s;
+            opacity: 0;
+            width: 18%;
+
+            &.active {
+              opacity: 1;
+            }
 
             &:hover {
               img {
@@ -873,6 +881,8 @@ footer {
         .cont {
           .history-swiper {
             .swiper-slide {
+              width: 40%;
+
               .text-wrap {
                 padding-top: 10px;
 
