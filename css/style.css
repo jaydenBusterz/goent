@@ -348,7 +348,7 @@ section {
     img {
       position: relative;
       min-width: 100%;
-      height: calc(100% - 80px);
+      height: calc(100% - 62px);
       left: 50%;
       transform: translateX(-50%) scale(1.1);
       transition: all 0.5s;
@@ -820,6 +820,10 @@ footer {
         font-size: 12vw;
         letter-spacing: -3px;
         bottom: 46px;
+      }
+
+      img {
+        height: calc(100% - 46px);
       }
     }
 
