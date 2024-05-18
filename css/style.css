@@ -815,7 +815,9 @@ footer {
 
     &.home {
       h2 {
-        font-size: 7vh;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 12vw;
         letter-spacing: -3px;
         bottom: 46px;
       }
