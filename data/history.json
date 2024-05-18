@@ -4,8 +4,8 @@
         "list": [
             {
                 "img": "./img/dummy-poster.jpg",
-                "tit": "김지훈 꼬추 3센치 0",
-                "des": "2024 des 0"
+                "tit": "2024 tit overflow text dummy text",
+                "des": "2024 des overflow text dummy text"
             },
             {
                 "img": "https://i.imgur.com/AdtWxJd.jpeg",
