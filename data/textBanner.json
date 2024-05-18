@@ -1,9 +1,9 @@
 {
     "textBanner": [
         {
-            "tit": "가수명",
-            "date": "년도.월",
-            "place": "공연장"
+            "tit": "singer name",
+            "date": "year.month",
+            "place": "place"
         },
         {
             "tit": "NAS",
