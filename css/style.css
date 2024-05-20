@@ -514,7 +514,6 @@ section {
           .swiper-slide {
             cursor: pointer;
             transition: all 0.7s;
-            opacity: 0;
             width: 18%;
 
             &.active {
