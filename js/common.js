@@ -36,7 +36,7 @@ $(function () {
             var val = data.nowwe[i];
             var list = `
             <div class="swiper-slide">
-              <img src="${val.img}" alt="포스터 이미지" loading="lazy" />
+              <img src="${val.img}" alt="${val.tit} poster image" loading="lazy" />
               <div class="swiper-lazy-preloader"></div>
             </div>`;
             $('.nowwe-swiper .swiper-wrapper, .nowwe-swiper2 .swiper-wrapper').append(list);
@@ -55,7 +55,7 @@ $(function () {
             var dataList = data[0].list[j];
             var yearList = `<div class="swiper-slide">
                         <div class="img-wrap">
-                            <img src="${dataList.img}" alt="포스터 이미지" loading="lazy" />
+                            <img src="${dataList.img}" alt="${dataList.tit} poster image" loading="lazy" />
                             <div class="swiper-lazy-preloader"></div>
                         </div>
                         <div class="text-wrap">
@@ -75,8 +75,7 @@ $(function () {
         loop: true,
         freeMode: false,
         lazy: {
-            loadPrevNext: true,
-            loadPrevNextAmount: 8,
+            loadPrevNext: true
         },
         autoplay: {
             delay: 1000,
@@ -100,8 +99,7 @@ $(function () {
         freeMode: false,
         slidesOffsetBefore: 1,
         lazy: {
-            loadPrevNext: true,
-            loadPrevNextAmount: 8,
+            loadPrevNext: true
         },
         autoplay: {
             delay: 1000,
@@ -151,9 +149,9 @@ $(function () {
             if (this.id == history.responseJSON[i].year) {
                 for (j = 0; j < history.responseJSON[i].list.length; j++) {
                     var dataList = history.responseJSON[i].list[j];
-                    var yearList = `<div class="swiper-slide">
+                    var yearList = `<div class="swiper-slide ready">
                     <div class="img-wrap">
-                      <img src="${dataList.img}" alt="포스터 이미지" loading="lazy" />
+                      <img src="${dataList.img}" alt="${dataList.tit} poster image" loading="lazy" />
                       <div class="swiper-lazy-preloader"></div>
                     </div>
                     <div class="text-wrap">
@@ -181,7 +179,7 @@ $(function () {
         var modalData =
             `<div class="modal-cont">
             <div class="img-wrap">
-                <img src="${data.img}" alt="포스터 이미지"/>
+                <img src="${data.img}" alt="${data.tit} poster image"/>
             </div>
             <div class="text-wrap">
                 <div class="tit">${data.tit}</div>
@@ -199,10 +197,10 @@ $(function () {
 
     // 스크롤 이벤트
     var sectionSpot = []
-    $(window).scroll(function () {
+    $(window).on('scroll', function () {
         var sct = $(window).scrollTop()
         var winH = $(window).height()
-        var winY = $(window).scrollTop() + (winH / 3) * 2
+        var winY = $(window).scrollTop() + (winH / 4) * 3
         sectionSpot = [];
 
         $('section, footer').each(function (i, e) {
