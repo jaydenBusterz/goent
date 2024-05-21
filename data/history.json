@@ -213,34 +213,44 @@
         "year": "2018",
         "list": [
             {
-                "img": "https://i.imgur.com/oIhuqpB.png",
-                "tit": "NONE",
-                "des": "NONE"
+                "img": "https://i.imgur.com/1PhbO4v.png",
+                "tit": "ALAN WALKER LIVE IN SEOUL",
+                "des": "18.12.18 / YES24 LIVE HALL"
             },
             {
-                "img": "https://i.imgur.com/oIhuqpB.png",
-                "tit": "NONE",
-                "des": "NONE"
+                "img": "https://i.imgur.com/l30VASU.png",
+                "tit": "KHALID AMERICAN TEEN TOUR",
+                "des": "18.10.25 / BLUE SQUARE MASTERCARD HALL"
             },
             {
-                "img": "https://i.imgur.com/oIhuqpB.png",
-                "tit": "NONE",
-                "des": "NONE"
+                "img": "https://i.imgur.com/n2xI6EU.png",
+                "tit": "SAM SMITH THE THRILL OF IT ALL WORLD TOUR",
+                "des": "18.10.09 / GOCHEOK SKY DOME"
             },
             {
-                "img": "https://i.imgur.com/oIhuqpB.png",
-                "tit": "NONE",
-                "des": "NONE"
+                "img": "https://i.imgur.com/eyiyiBQ.png",
+                "tit": "HALSEY WORLD TOUR",
+                "des": "18.08.06 / YES24 LIVE HALL"
             },
             {
-                "img": "https://i.imgur.com/oIhuqpB.png",
-                "tit": "NONE",
-                "des": "NONE"
+                "img": "https://i.imgur.com/MaEO3B8.png",
+                "tit": "KENDRICK LAMAR HYUNDAI CARD SUPER CONCERT 24",
+                "des": "18.07.30 / JAMSIL AUXILIARY STADIUM"
             },
             {
-                "img": "https://i.imgur.com/oIhuqpB.png",
-                "tit": "NONE",
-                "des": "NONE"
+                "img": "https://i.imgur.com/KHeEXl9.png",
+                "tit": "BOB DYLAN & HIS BAND LIVE IN SEOUL 2018",
+                "des": "18.07.27 / KSPO DOME"
+            },
+            {
+                "img": "https://i.imgur.com/vPL2aX0.png",
+                "tit": "KATY PERRY WITNESS THE TOUR",
+                "des": "18.04.06 / COCHEOK SKY DOME"
+            },
+            {
+                "img": "https://i.imgur.com/Lx8mgBF.jpeg",
+                "tit": "JOHN LEGEND DARKNESS AND LIGHT TOUR",
+                "des": "18.03.15 / OLYMPIC HALL"
             }
         ]
     },
@@ -249,18 +259,18 @@
         "list": [
             {
                 "img": "https://i.imgur.com/1rViCKl.png",
-                "tit": "미스터빅",
+                "tit": "MR.BIG",
                 "des": "17.10.08 / YES24 LIVE HALL"
             },
             {
                 "img": "https://i.imgur.com/24q14it.png",
-                "tit": "드림 시어터",
-                "des": "17.09.16 / 올림픽공원 올림픽홀"
+                "tit": "DREAM THEATER",
+                "des": "17.09.16 / OLYMPIC PARK OLYMPIC HALL"
             },
             {
                 "img": "https://i.imgur.com/EdDY7Ad.png",
-                "tit": "아리아나 그란데",
-                "des": "17.08.15 / 고척스카이돔"
+                "tit": "ARIANA GRANDE DANGEROUS WOMAN TOUR",
+                "des": "17.08.15 / GOCHEOK SKY DOME"
             },
             {
                 "img": "https://i.imgur.com/DCsuJW5.png",
@@ -269,8 +279,8 @@
             },
             {
                 "img": "https://i.imgur.com/QHarnzJ.jpeg",
-                "tit": "메탈리카 내한공연",
-                "des": "17.01.11 / 고척스카이돔"
+                "tit": "METALLICA WORLD TOUR 2017 SEOUL",
+                "des": "17.01.11 / GOCHEOK SKY DOME"
             }
         ]
     }
