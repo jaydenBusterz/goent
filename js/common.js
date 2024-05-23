@@ -9,7 +9,7 @@ $(function () {
                 var modalData =
                     `<div class="modal-cont">
                         <div class="img-wrap">
-                            <img src="${data.modal.img}" alt="${data.modal.img} poster image"/>
+                            <img src="${data.modal.img}" alt="${data.modal.tit} poster image"/>
                         </div>
                         <div class="text-wrap">
                             <h3 class="tit">${data.modal.tit}</h3>
