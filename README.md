@@ -142,3 +142,32 @@ json 데이터 타입의 형식과 구조는 모두 동일한 방식을 갖고�
     "des": "상세내용"   
 }   
 형태로 구성된다.   
+
+***
+
+* Main Modal   
+mainModal.json   
+웹페이지 처음 접속시 노출 되는 메인 모달에 들어가는 데이터   
+   
+데이터 구성 형식
+```javascript
+{
+    "switch": false,
+    "modal": {
+        "img": "./img/people.png",
+        "tit": "2024 LOVESOME FESTIVAL",
+        "date": "2024.04.27 - 2024.04.28",
+        "des": "OLYMPIC PARK 88 GARDEN & KSPO DOME"
+    }
+}
+```
+"switch": true( 모달 켬 ) / false( 모달 끔 )   
+스위치의 값 2개로 해당 모달을 키고 끄는걸 설정한다.   
+   
+"img": "이미지 경로",   
+"tit": "제목",   
+"date": "기간",   
+"des": "상세내용"   
+형태로 구성된다.   
+
+***
