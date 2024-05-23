@@ -336,6 +336,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
+  max-width: 1000px;
   max-height: 80%;
   background: #111;
   border-radius: 10px;
