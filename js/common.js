@@ -82,7 +82,8 @@ $(function () {
                             <div class="swiper-lazy-preloader"></div>
                         </div>
                         <div class="text-wrap">
-                          <p class="tit">${dataList.tit}</p>
+                          <h3 class="tit">${dataList.tit}</h3>
+                          <p class="date">${dataList.date}</p>
                           <p class="des">${dataList.des}</p>
                         </div>
                       </div>`;
@@ -178,7 +179,8 @@ $(function () {
                       <div class="swiper-lazy-preloader"></div>
                     </div>
                     <div class="text-wrap">
-                      <p class="tit">${dataList.tit}</p>
+                      <h3 class="tit">${dataList.tit}</h3>
+                      <p class="date">${dataList.date}</p>
                       <p class="des">${dataList.des}</p>
                     </div>
                   </div>`;
@@ -206,6 +208,7 @@ $(function () {
             </div>
             <div class="text-wrap">
                 <h3 class="tit">${data.tit}</h3>
+                <p class="date">${data.date}</p>
                 <p class="des">${data.des}</p>
             </div>
         </div>`;

@@ -3,52 +3,62 @@
         {
             "img": "https://i.imgur.com/9z5GytD.jpeg",
             "tit": "KENNY G",
+            "date": "2024.04.11 ~ 13",
             "des": "2024.04.11 ~ 13"
         },
         {
             "img": "https://i.imgur.com/tJUywnw.jpeg",
             "tit": "LOUD BRIDGE FESTIVAL",
-            "des": "2024.04.13 ~ 14 / YES24 LIVEHALL"
+            "date": "2024.04.13 ~ 14",
+            "des": "YES24 LIVEHALL"
         },
         {
             "img": "https://i.imgur.com/PvuWyMY.jpeg",
             "tit": "LOVESOME",
-            "des": "2024.04.27 ~ 28 / OLYMPIC PARK 88 GARDEN"
+            "date": "2024.04.27 ~ 28",
+            "des": "OLYMPIC PARK 88 GARDEN"
         },
         {
             "img": "https://i.imgur.com/qiqX61m.jpeg",
             "tit": "TONE & MUSIC",
-            "des": "2024. 06. 15 ~ 16 / OLYMPIC PARK 88 GARDEN"
+            "date": "2024. 06. 15 ~ 16",
+            "des": "OLYMPIC PARK 88 GARDEN"
         },
         {
             "img": "https://i.imgur.com/yXXaxDT.jpeg",
             "tit": "PINYO",
-            "des": "2024. 07. 21 / KT&G SANGSANGMADANG"
+            "date": "2024. 07. 21",
+            "des": "KT&G SANGSANGMADANG"
         },
         {
             "img": "https://i.imgur.com/9z5GytD.jpeg",
             "tit": "KENNY G",
+            "date": "2024.04.11 ~ 13",
             "des": "2024.04.11 ~ 13"
         },
         {
             "img": "https://i.imgur.com/tJUywnw.jpeg",
             "tit": "LOUD BRIDGE FESTIVAL",
-            "des": "2024.04.13 ~ 14 / YES24 LIVEHALL"
+            "date": "2024.04.13 ~ 14",
+            "des": "YES24 LIVEHALL"
         },
         {
             "img": "https://i.imgur.com/PvuWyMY.jpeg",
             "tit": "LOVESOME",
-            "des": "2024.04.27 ~ 28 / OLYMPIC PARK 88 GARDEN"
+            "date": "2024.04.27 ~ 28",
+            "des": "OLYMPIC PARK 88 GARDEN"
         },
         {
             "img": "https://i.imgur.com/qiqX61m.jpeg",
             "tit": "TONE & MUSIC",
-            "des": "2024. 06. 15 ~ 16 / OLYMPIC PARK 88 GARDEN"
+            "date": "2024. 06. 15 ~ 16",
+            "des": "OLYMPIC PARK 88 GARDEN"
         },
         {
             "img": "https://i.imgur.com/yXXaxDT.jpeg",
             "tit": "PINYO",
-            "des": "2024. 07. 21 / KT&G SANGSANGMADANG"
+            "date": "2024. 07. 21",
+            "des": "KT&G SANGSANGMADANG"
         }
     ]
 }

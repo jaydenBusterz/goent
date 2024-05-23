@@ -77,11 +77,13 @@ nowwe.json
         {
             "img": "https://i.imgur.com/9pTOZld.jpeg",
             "tit": "poster tit",
+            "date": "2024.04.27 - 2024.04.28",
             "des": "poster des"
         },
         {
             "img": "https://i.imgur.com/8IneA0B.jpeg",
             "tit": "poster tit",
+            "date": "2024.04.27 - 2024.04.28",
             "des": "poster des"
         }
     ]
@@ -106,11 +108,13 @@ history.json
             {
                 "img": "./img/dummy-poster.jpg",
                 "tit": "2024 tit 0",
+                "date": "2024.04.27 - 2024.04.28",
                 "des": "2024 des 0"
             },
             {
                 "img": "https://i.imgur.com/AdtWxJd.jpeg",
                 "tit": "2024 tit 1",
+                "date": "2024.04.27 - 2024.04.28",
                 "des": "2024 des 1"
             }
         ]
@@ -121,11 +125,13 @@ history.json
             {
                 "img": "./img/people.png",
                 "tit": "2023 tit 0",
+                "date": "2024.04.27 - 2024.04.28",
                 "des": "2023 des 0"
             },
             {
                 "img": "./img/people.png",
                 "tit": "2023 tit 1",
+                "date": "2024.04.27 - 2024.04.28",
                 "des": "2023 des 1"
             }
         ]
@@ -139,6 +145,7 @@ json 데이터 타입의 형식과 구조는 모두 동일한 방식을 갖고�
 {   
     "img": "이미지 경로",   
     "tit": "제목",   
+    "date": "기간",   
     "des": "상세내용"   
 }   
 형태로 구성된다.   

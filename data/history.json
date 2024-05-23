@@ -5,27 +5,32 @@
             {
                 "img": "https://i.imgur.com/rLViBR8.jpeg",
                 "tit": "2024 LOVESOME FESTIVAL",
-                "des": "24.04.27~28 / OLYMPIC PARK 88 GARDEN & KSPO DOME"
+                "date": "24.04.27~28",
+                "des": "OLYMPIC PARK 88 GARDEN & KSPO DOME"
             },
             {
                 "img": "https://i.imgur.com/ArMWaZi.jpeg",
                 "tit": "LOUD BRIDGE FESTIVAL SEOUL 2024",
-                "des": "24.04.13~14 / YES24 LIVE HALL"
+                "date": "24.04.13~14",
+                "des": "YES24 LIVE HALL"
             },
             {
                 "img": "https://i.imgur.com/5Su5zND.jpeg",
                 "tit": "KENNY G WITH KENNY G BAND",
-                "des": "24.04.13 / KYUNG HEE UNIVERSITY GRAND PEACE PALACE"
+                "date": "24.04.13",
+                "des": "KYUNG HEE UNIVERSITY GRAND PEACE PALACE"
             },
             {
                 "img": "https://i.imgur.com/CeY7q8s.jpeg",
                 "tit": "KENNY G WITH KENNY G BAND",
-                "des": "24.04.11 / BEXCO AUDITORIUM"
+                "date": "24.04.11",
+                "des": "BEXCO AUDITORIUM"
             },
             {
                 "img": "https://i.imgur.com/QJqcVmG.jpeg",
                 "tit": "SLASH THE RIVER IS RISING TOUR 24",
-                "des": "24.03.09 / YES24 LIVE HALL"
+                "date": "24.03.09",
+                "des": "YES24 LIVE HALL"
             }
         ]
     },
@@ -35,32 +40,38 @@
             {
                 "img": "https://i.imgur.com/rLEMKFN.jpeg",
                 "tit": "WORLDS 2023 FAN FEST LIVE CONCERT",
-                "des": "23.11.18 / GWANGHWAMUN SQUARE"
+                "date": "23.11.18",
+                "des": "GWANGHWAMUN SQUARE"
             },
             {
                 "img": "https://i.imgur.com/Et674zg.jpeg",
                 "tit": "SAM SMITH GLORIA THE TOUR",
-                "des": "23.10.17 / KSPO DOME"
+                "date": "23.10.17",
+                "des": "KSPO DOME"
             },
             {
                 "img": "https://i.imgur.com/LB2KVNM.jpeg",
                 "tit": "2023 JOY OLPARK FESTIVAL",
-                "des": "23.09.16~17 / OLYMPIC PARK 88 GARDEN"
+                "date": "23.09.16~17",
+                "des": "OLYMPIC PARK 88 GARDEN"
             },
             {
                 "img": "https://i.imgur.com/J8Po3C1.jpeg",
                 "tit": "MR.BIG THE BIG FINISH",
-                "des": "23.07.29 / YES24 LIVE HALL"
+                "date": "23.07.29",
+                "des": "YES24 LIVE HALL"
             },
             {
                 "img": "https://i.imgur.com/yMWHf74.jpeg",
                 "tit": "TONE&MUSIC FESTIVAL 2023",
-                "des": "23.06.03~04 / OLYMPIC PARK 88 GARDEN"
+                "date": "23.06.03~04",
+                "des": "OLYMPIC PARK 88 GARDEN"
             },
             {
                 "img": "https://i.imgur.com/bQBotB2.jpeg",
                 "tit": "2023 LOVESOME FESTIVAL",
-                "des": "23.04.22~23 / SEOUL OLYMPIC STADIUM"
+                "date": "23.04.22~23",
+                "des": "SEOUL OLYMPIC STADIUM"
             }
         ]
     },
@@ -70,22 +81,26 @@
             {
                 "img": "https://i.imgur.com/XXXuiJA.jpeg",
                 "tit": "2022 JOY OLPARK FESTIVAL",
-                "des": "22.09.24~25 / OLYMPIC PARK 88 GARDEN"
+                "date": "22.09.24~25",
+                "des": "OLYMPIC PARK 88 GARDEN"
             },
             {
                 "img": "https://i.imgur.com/Ma9aEje.jpeg",
                 "tit": "KENNY G WITH KENNY G BAND",
-                "des": "22.09.17 / SEJONG UNIVERSITY DAEYANG HALL"
+                "date": "22.09.17",
+                "des": "SEJONG UNIVERSITY DAEYANG HALL"
             },
             {
                 "img": "https://i.imgur.com/oIK8Uz5.jpeg",
                 "tit": "KENNY G WITH KENNY G BAND",
-                "des": "22.09.15 / BUSAN CITIZENS HALL"
+                "date": "22.09.15",
+                "des": "BUSAN CITIZENS HALL"
             },
             {
                 "img": "https://i.imgur.com/FGJlJWd.jpeg",
                 "tit": "ALAN WALKER WALKERVERSE THE TOUR",
-                "des": "22.09.14 / JAMSIL INDOOR STADIUM"
+                "date": "22.09.14",
+                "des": "JAMSIL INDOOR STADIUM"
             }
         ]
     },
@@ -95,7 +110,8 @@
             {
                 "img": "https://i.imgur.com/5jgbcL4.jpeg",
                 "tit": "QUEEN + ADAM LAMBERT THE RHAPSODY TOUR",
-                "des": "20.01.18~19 / GOCHEOK SKY DOME"
+                "date": "20.01.18~19",
+                "des": "GOCHEOK SKY DOME"
             }
         ]
     },
@@ -105,37 +121,44 @@
             {
                 "img": "https://i.imgur.com/IQg1gpz.jpeg",
                 "tit": "GENERATION AXE",
-                "des": "19.11.23 / YES24 LIVE HALL"
+                "date": "19.11.23",
+                "des": "YES24 LIVE HALL"
             },
             {
                 "img": "https://i.imgur.com/XkQXKVz.jpeg",
                 "tit": "HANS ZIMMER LIVE ON TOUR",
-                "des": "19.09.28 / KSPO DOME"
+                "date": "19.09.28",
+                "des": "KSPO DOME"
             },
             {
                 "img": "https://i.imgur.com/efI3s45.jpeg",
                 "tit": "SHAWN MENDES THE TOUR ASIA",
-                "des": "19.09.25 / KSPO DOME"
+                "date": "19.09.25",
+                "des": "KSPO DOME"
             },
             {
                 "img": "https://i.imgur.com/dLNZCGC.jpeg",
                 "tit": "THOM YORKE LIVE IN SEOUL",
-                "des": "19.07.28 / OLYMPIC HALL"
+                "date": "19.07.28",
+                "des": "OLYMPIC HALL"
             },
             {
                 "img": "https://i.imgur.com/wzQQ7Jb.jpeg",
                 "tit": "JASON MRAZ GOOD VIBES TOUR",
-                "des": "19.07.26 / BEXCO EXHIBITION HALL1"
+                "date": "19.07.26",
+                "des": "BEXCO EXHIBITION HALL1"
             },
             {
                 "img": "https://i.imgur.com/CuJeOdp.jpeg",
                 "tit": "JASON MRAZ GOOD VIBES TOUR",
-                "des": "19.07.24 / OLYMPIC PARK 88 GARDEN"
+                "date": "19.07.24",
+                "des": "OLYMPIC PARK 88 GARDEN"
             },
             {
                 "img": "https://i.imgur.com/ygjoYzF.jpeg",
                 "tit": "ASAP ROCKY LIVE IN SEOUL",
-                "des": "19.04.05 / JAMSIL ARENA"
+                "date": "19.04.05",
+                "des": "JAMSIL ARENA"
             }
         ]
     },
@@ -145,42 +168,50 @@
             {
                 "img": "https://i.imgur.com/vHfqBAC.jpeg",
                 "tit": "ALAN WALKER LIVE IN SEOUL",
-                "des": "18.12.18 / YES24 LIVE HALL"
+                "date": "18.12.18",
+                "des": "YES24 LIVE HALL"
             },
             {
                 "img": "https://i.imgur.com/CHxdc2Z.jpeg",
                 "tit": "KHALID AMERICAN TEEN TOUR",
-                "des": "18.10.25 / BLUE SQUARE MASTERCARD HALL"
+                "date": "18.10.25",
+                "des": "BLUE SQUARE MASTERCARD HALL"
             },
             {
                 "img": "https://i.imgur.com/R2UrejD.jpeg",
                 "tit": "SAM SMITH THE THRILL OF IT ALL WORLD TOUR",
-                "des": "18.10.09 / GOCHEOK SKY DOME"
+                "date": "18.10.09",
+                "des": "GOCHEOK SKY DOME"
             },
             {
                 "img": "https://i.imgur.com/mvdEFUe.jpeg",
                 "tit": "HALSEY WORLD TOUR",
-                "des": "18.08.06 / YES24 LIVE HALL"
+                "date": "18.08.06",
+                "des": "YES24 LIVE HALL"
             },
             {
                 "img": "https://i.imgur.com/8ImVPri.jpeg",
                 "tit": "KENDRICK LAMAR HYUNDAI CARD SUPER CONCERT 24",
-                "des": "18.07.30 / JAMSIL AUXILIARY STADIUM"
+                "date": "18.07.30",
+                "des": "JAMSIL AUXILIARY STADIUM"
             },
             {
                 "img": "https://i.imgur.com/o3R3Eul.jpeg",
                 "tit": "BOB DYLAN & HIS BAND LIVE IN SEOUL 2018",
-                "des": "18.07.27 / KSPO DOME"
+                "date": "18.07.27",
+                "des": "KSPO DOME"
             },
             {
                 "img": "https://i.imgur.com/6kBph9Q.jpeg",
                 "tit": "KATY PERRY WITNESS THE TOUR",
-                "des": "18.04.06 / COCHEOK SKY DOME"
+                "date": "18.04.06",
+                "des": "COCHEOK SKY DOME"
             },
             {
                 "img": "https://i.imgur.com/cP0gmp0.jpeg",
                 "tit": "JOHN LEGEND DARKNESS AND LIGHT TOUR",
-                "des": "18.03.15 / OLYMPIC HALL"
+                "date": "18.03.15",
+                "des": "OLYMPIC HALL"
             }
         ]
     },
@@ -190,27 +221,32 @@
             {
                 "img": "https://i.imgur.com/JnnUsSP.jpeg",
                 "tit": "MR.BIG",
-                "des": "17.10.08 / YES24 LIVE HALL"
+                "date": "17.10.08",
+                "des": "YES24 LIVE HALL"
             },
             {
                 "img": "https://i.imgur.com/zdVE6Xn.jpeg",
                 "tit": "DREAM THEATER",
-                "des": "17.09.16 / OLYMPIC PARK OLYMPIC HALL"
+                "date": "17.09.16",
+                "des": "OLYMPIC PARK OLYMPIC HALL"
             },
             {
                 "img": "https://i.imgur.com/T3skkNx.jpeg",
                 "tit": "ARIANA GRANDE DANGEROUS WOMAN TOUR",
-                "des": "17.08.15 / GOCHEOK SKY DOME"
+                "date": "17.08.15",
+                "des": "GOCHEOK SKY DOME"
             },
             {
                 "img": "https://i.imgur.com/P03mu8g.jpeg",
                 "tit": "MUSE IN CITY",
-                "des": "17.04.23 / OLYMPIC PARK 88 GARDEN"
+                "date": "17.04.23",
+                "des": "OLYMPIC PARK 88 GARDEN"
             },
             {
                 "img": "https://i.imgur.com/8qNcrrC.jpeg",
                 "tit": "METALLICA WORLD TOUR 2017 SEOUL",
-                "des": "17.01.11 / GOCHEOK SKY DOME"
+                "date": "17.01.11",
+                "des": "GOCHEOK SKY DOME"
             }
         ]
     }
