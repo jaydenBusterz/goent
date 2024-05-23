@@ -285,7 +285,7 @@ body {
       img {
         display: block;
         max-width: 100%;
-        max-height: 80vh;
+        max-height: 70vh;
         margin: 0 auto;
       }
     }
@@ -293,6 +293,7 @@ body {
     .text-wrap {
       padding-left: 20px;
       border-left: 1px solid #777;
+      flex: auto;
 
       .tit {
         font-size: 25px;
@@ -410,16 +411,17 @@ section {
 
     &.on {
       img {
-        transform: translateX(-50%) scale(1);
+        transform: translate(-50%, -50%) scale(1);
       }
     }
 
     img {
       position: relative;
       min-width: 100%;
-      height: calc(100% - 62px);
+      min-height: calc(100% - 62px);
+      top: 50%;
       left: 50%;
-      transform: translateX(-50%) scale(1.1);
+      transform: translate(-50%, -50%) scale(1.1);
       transition: all 0.5s;
     }
 
