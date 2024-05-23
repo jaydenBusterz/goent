@@ -1,4 +1,27 @@
 $(function () {
+    // main modal
+    $(document).on('ready', function () {
+        $.getJSON("./data/mainModal.json", function (data) {
+            if (data.switch) {
+                $('.main-modal, .dim').addClass('active');
+                $('html, body').addClass('noscroll');
+
+                var modalData =
+                    `<div class="modal-cont">
+                        <div class="img-wrap">
+                            <img src="${data.modal.img}" alt="${data.modal.img} poster image"/>
+                        </div>
+                        <div class="text-wrap">
+                            <h3 class="tit">${data.modal.tit}</h3>
+                            <p class="date">${data.modal.date}</p>
+                            <p class="des">${data.modal.des}</p>
+                        </div>
+                    </div>`;
+                $('.main-modal').append(modalData);
+            }
+        });
+    });
+
     // 네비게이션
     $(".gnb li").on('click', function () {
         var sectionPos = $("." + this.id).offset().top;
@@ -171,7 +194,7 @@ $(function () {
     // history modal
     $(document).on('click', '.tab-cont .swiper-slide', function () {
         $('.modal-cont').remove();
-        $('.modal').addClass('active');
+        $('.history-modal, .dim').addClass('active');
         $('html, body').addClass('noscroll');
         var year = $('.tab-tit li.active').index();
         var activeSlide = $(this).index();
@@ -182,16 +205,16 @@ $(function () {
                 <img src="${data.img}" alt="${data.tit} poster image"/>
             </div>
             <div class="text-wrap">
-                <div class="tit">${data.tit}</div>
-                <div class="des">${data.des}</div>
+                <h3 class="tit">${data.tit}</h3>
+                <p class="des">${data.des}</p>
             </div>
         </div>`;
 
-        $('.modal').append(modalData);
+        $('.history-modal').append(modalData);
     });
 
-    $('.modal').on('click', function () {
-        $('.modal').removeClass('active');
+    $('.dim').on('click', function () {
+        $('.dim, .modal').removeClass('active');
         $('html, body').removeClass('noscroll');
     });
 
