@@ -281,12 +281,11 @@ body {
 
     .img-wrap {
       padding-right: 20px;
-      max-height: 100%;
 
       img {
         display: block;
         max-width: 100%;
-        max-height: 100%;
+        max-height: 80vh;
         margin: 0 auto;
       }
     }
@@ -294,7 +293,6 @@ body {
     .text-wrap {
       padding-left: 20px;
       border-left: 1px solid #777;
-      flex: auto;
 
       .tit {
         font-size: 25px;
