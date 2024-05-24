@@ -385,7 +385,7 @@ section {
 
   &.home {
     overflow: hidden;
-    height: calc(100vh - env(safe-area-inset-bottom));
+    height: 100vh;
     padding: 0;
 
     .wrap {
@@ -921,6 +921,16 @@ footer {
     }
 
     &.home {
+      @supports (-webkit-touch-callout: none) {
+        min-height: -webkit-fill-available;
+      }
+
+      .wrap {
+        @supports (-webkit-touch-callout: none) {
+          min-height: -webkit-fill-available;
+        }
+      }
+
       h2 {
         left: 50%;
         transform: translateX(-50%);
@@ -931,6 +941,10 @@ footer {
 
       img {
         height: calc(100% - 46px);
+
+        @supports (-webkit-touch-callout: none) {
+          min-height: -webkit-fill-available;
+        }
       }
     }
 
