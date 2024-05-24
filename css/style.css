@@ -552,6 +552,7 @@ section {
 
     .tab-cont {
       min-width: calc(100% - 200px);
+      width: 100%;
       padding-left: 20px;
       transition: all 2s;
 
