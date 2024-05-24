@@ -385,7 +385,7 @@ section {
 
   &.home {
     overflow: hidden;
-    height: 100vh;
+    height: calc(100vh - env(safe-area-inset-bottom));
     padding: 0;
 
     .wrap {
@@ -438,14 +438,20 @@ section {
         width: 100%;
         overflow: hidden;
         box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.5);
+        cursor: pointer;
 
-        img {
-          width: 100%;
+        .img-wrap {
+          overflow: hidden;
+
+          img {
+            width: 100%;
+            transition: all 0.5s;
+          }
         }
 
         &:hover {
           img {
-            transform: calc(1.2);
+            transform: scale(1.1);
           }
         }
       }
@@ -561,7 +567,7 @@ section {
 
           .swiper-slide {
             cursor: pointer;
-            transition: all 0.7s;
+            transition: all 0.5s;
             width: 20%;
 
             &.ready {
@@ -827,11 +833,6 @@ footer {
   .section-title {
     font-size: 40px;
     letter-spacing: -3px;
-
-    &.active {
-      opacity: 1;
-      transform: translateY(10%);
-    }
   }
 
   .infinite-label {
@@ -917,6 +918,10 @@ footer {
   section {
     .wrap {
       padding-top: 20px;
+
+      .section-title {
+        padding: 0 20px 10px;
+      }
     }
 
     &.home {
@@ -954,7 +959,6 @@ footer {
 
       .tab-wrap {
         padding-top: 10px;
-        margin-top: 10px;
       }
 
       .tab-tit {

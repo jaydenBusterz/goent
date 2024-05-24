@@ -162,6 +162,28 @@ $(function () {
         }
     });
 
+    // nowwe modal
+    $(document).on('click', '.nowwe .swiper-slide', function () {
+        $('.modal-cont').remove();
+        $('.history-modal, .dim').addClass('active');
+        $('html, body').addClass('noscroll');
+        var activeSlide = $(this).index();
+        var data = nowwe.responseJSON.nowwe[activeSlide];
+        var modalData =
+            `<div class="modal-cont">
+            <div class="img-wrap">
+                <img src="${data.img}" alt="${data.tit} poster image"/>
+            </div>
+            <div class="text-wrap">
+                <h3 class="tit">${data.tit}</h3>
+                <p class="date">${data.date}</p>
+                <p class="des">${data.des}</p>
+            </div>
+        </div>`;
+
+        $('.history-modal').append(modalData);
+    });
+
     // history tab
     $(document).on('click', '.tab-tit li', function () {
         $('.tab-tit li').removeClass('active');
