@@ -361,7 +361,6 @@ section {
   align-items: center;
   position: relative;
   z-index: 1;
-  padding-bottom: 50px;
 
   .wrapper {
     width: 100%;
@@ -386,7 +385,6 @@ section {
   &.home {
     overflow: hidden;
     height: 100vh;
-    padding: 0;
 
     .wrap {
       height: 100%;
@@ -472,8 +470,6 @@ section {
   }
 
   &.history {
-    padding-bottom: 0;
-
     .control-wrap {
       display: flex;
       position: absolute;
@@ -635,7 +631,6 @@ section {
 
   &.about {
     overflow: hidden;
-    padding-bottom: 0;
     padding-top: 50px;
 
     .about-bg {
