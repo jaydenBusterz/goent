@@ -167,7 +167,7 @@ $(function () {
         $('.modal-cont').remove();
         $('.history-modal, .dim').addClass('active');
         $('html, body').addClass('noscroll');
-        var activeSlide = $(this).index();
+        var activeSlide = $(this).attr('data-swiper-slide-index');
         var data = nowwe.responseJSON.nowwe[activeSlide];
         var modalData =
             `<div class="modal-cont">
