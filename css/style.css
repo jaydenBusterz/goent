@@ -435,7 +435,7 @@ section {
       }
 
       .swiper-slide {
-        width: 100%;
+        width: 16%;
         overflow: hidden;
         box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.5);
         cursor: pointer;
@@ -935,6 +935,12 @@ footer {
 
       img {
         height: calc(100% - 46px);
+      }
+    }
+
+    &.nowwe {
+      .swiper-slide {
+        width: 25%;
       }
     }
 
