@@ -440,13 +440,9 @@ section {
         box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.5);
         cursor: pointer;
 
-        .img-wrap {
-          overflow: hidden;
-
-          img {
-            width: 100%;
-            transition: all 0.5s;
-          }
+        img {
+          width: 100%;
+          transition: all 0.5s;
         }
 
         &:hover {
