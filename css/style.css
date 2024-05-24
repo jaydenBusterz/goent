@@ -922,12 +922,14 @@ footer {
 
     &.home {
       @supports (-webkit-touch-callout: none) {
-        min-height: -webkit-fill-available;
+        height: -webkit-fill-available;
+        height: fill-available;
       }
 
       .wrap {
         @supports (-webkit-touch-callout: none) {
-          min-height: -webkit-fill-available;
+          height: -webkit-fill-available;
+          height: fill-available;
         }
       }
 
@@ -943,7 +945,8 @@ footer {
         height: calc(100% - 46px);
 
         @supports (-webkit-touch-callout: none) {
-          min-height: -webkit-fill-available;
+          height: -webkit-fill-available;
+          height: fill-available;
         }
       }
     }
