@@ -110,7 +110,7 @@ $(function () {
             type: 'progressbar'
         },
         breakpoints: {
-            786: {
+            1024: {
                 slidesPerView: 6,
             }
         }
@@ -135,7 +135,7 @@ $(function () {
             type: 'progressbar'
         },
         breakpoints: {
-            786: {
+            1024: {
                 slidesPerView: 6,
             }
         }
