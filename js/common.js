@@ -58,7 +58,7 @@ $(function () {
         for (i = 0; i < data.nowwe.length; i++) {
             var val = data.nowwe[i];
             var list = `
-            <div class="swiper-slide">
+            <div class="swiper-slide" data-thisIndex="${i}">
               <img src="${val.img}" alt="${val.tit} poster image" loading="lazy" />
               <div class="swiper-lazy-preloader"></div>
             </div>`;
@@ -167,7 +167,7 @@ $(function () {
         $('.modal-cont').remove();
         $('.history-modal, .dim').addClass('active');
         $('html, body').addClass('noscroll');
-        var activeSlide = $(this).attr('data-swiper-slide-index');
+        var activeSlide = $(this).attr('data-thisIndex');
         var data = nowwe.responseJSON.nowwe[activeSlide];
         var modalData =
             `<div class="modal-cont">
