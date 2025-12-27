@@ -47,6 +47,8 @@
     <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="./js/common.js"></script>
+    <script src="./js/sectionActions.js"></script>
+    <script src="./js/fullpage.js"></script>
     <!-- Google tag (gtag.js) -->
     <script
       async
@@ -63,276 +65,36 @@
     </script>
   </head>
 
-  <body>
-    <!-- navigation -->
-    <header>
-      <h1 class="logo-img">
-        <a href="/">
-          <img
-            src="./img/logo-white.png"
-            alt="GO Entertainment, 고 엔터테인먼트"
-          />
-        </a>
-      </h1>
-      <nav class="nav">
+  <body id="fullpage-wrapper">
+    <header id="header">
+      <nav>
         <ul class="gnb">
-          <li id="home" class="active"><span>Home</span></li>
-          <li id="nowwe"><span>Now We Are</span></li>
-          <li id="history"><span>History</span></li>
-          <li id="about"><span>About Us</span></li>
-          <li id="contact"><span>Contact Us</span></li>
-        </ul>
-        <ul class="lang">
-          <li id="kor" class="active"><span>KO</span></li>
-          <li id="en"><span>EN</span></li>
+          <li class="active"><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#news">News</a></li>
+          <li><a href="#history">History</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
     </header>
 
-    <main>
-      <div class="flash"></div>
-      <section class="home">
-        <div class="wrap">
-          <img src="./img/main-img.jpg" alt="stage image" />
-          <h2>GO<br />Entertainment</h2>
-          <div class="infinite-label">
-            <ul>
-              <!--/*
-            <li>
-              <strong class="title">${val.tit}</strong>
-              <strong class="date">${val.date}</strong>
-              <strong class="place">${val.place}</strong>
-            </li> 
-            */-->
-            </ul>
-          </div>
+    <div id="fullpage">
+      <section id="home" class="fp-section">
+        <div class="hero">
+          <h1 class="title">
+            <span class="typing">“We make wonderful show”</span>
+            <span class="cursor">|</span>
+          </h1>
+
+          <p class="subtitle">
+            공연문화의 중심에서 검증된 전문성과 노하우를 갖춘 업계 최고의 이력
+          </p>
         </div>
       </section>
-
-      <section class="nowwe">
-        <div class="wrap">
-          <h2 class="section-title"><span class="numb">01/</span>Now we are</h2>
-          <div class="swiper nowwe-swiper">
-            <div class="swiper-wrapper">
-              <!--/*
-            <div class="swiper-slide">
-              <img src="${val.img}" alt="${val.tit} poster image" loading="lazy" />
-            </div>
-            */-->
-            </div>
-            <div class="progress-pagination"></div>
-          </div>
-          <div class="swiper nowwe-swiper2">
-            <div class="swiper-wrapper">
-              <!--/*
-            <div class="swiper-slide">
-              <img src="${val.img}" alt="${val.tit} poster image" loading="lazy" />
-            </div>
-            */-->
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="history">
-        <div class="wrap">
-          <h2 class="section-title"><span class="numb">02/</span>History</h2>
-          <div class="control-wrap">
-            <span class="control-btn prev-btn"></span>
-            <span class="control-btn next-btn"></span>
-          </div>
-          <div class="tab-wrap">
-            <div class="tab-tit">
-              <ul>
-                <!--/* <li>${val}</li> */-->
-              </ul>
-            </div>
-            <div class="tab-cont">
-              <div class="cont">
-                <div class="swiper history-swiper">
-                  <div class="swiper-wrapper">
-                    <!--/*
-                  <div class="swiper-slide">
-                    <div class="img-wrap">
-                      <img src="${dataList.img}" alt="${dataList.tit} poster image" />
-                    </div>
-                    <div class="text-wrap">
-                      <h3 class="tit">${dataList.tit}</h3>
-                      <p class="date">${dataList.date}</p>
-                      <p class="des">${dataList.des}</p>
-                    </div>
-                  </div>
-                  */-->
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="about">
-        <div class="wrapper">
-          <h2 class="section-title"><span class="numb">03/</span>About Us</h2>
-
-          <div class="about-cont">
-            <div class="img-wrap">
-              <img src="./img/about-sec1.png" alt="stage image" />
-            </div>
-            <div class="text-wrap">
-              <div class="center kor active">
-                <p>
-                  주식회사 고엔터테인먼트는 공연기획, 연출, 제작사로 콘서트,
-                  페스티벌, 이벤트, 기업행사 등 공연문화의 중심에서 검증된
-                  전문성과 노하우를 갖추어 업계 최고의 이력을 자랑하고 있습니다.
-                </p>
-
-                <p>
-                  주식회사 고엔터테인먼트는 검증된 인프라를 통해 효율적인
-                  커뮤니케이션과 효과적인 운영으로 최고의 서비스를 제공합니다.
-                </p>
-
-                <p>
-                  또한, 축적된 노하우로 완벽한 공연을 만들어내며, 정확하고
-                  확실하게 마지막까지 책임지고 임하는 것이 저희의 모토입니다.
-                </p>
-              </div>
-              <div class="center en">
-                <p>
-                  Go Entertainment Co., Ltd. is a performance planning,
-                  directing, and production company that boasts the best history
-                  in the industry with proven expertise and know-how at the
-                  center of performance culture such as concerts, festivals,
-                  events, and corporate events.
-                </p>
-
-                <p>
-                  Go Entertainment Co., Ltd. provides the best service through
-                  efficient communication and effective operation through proven
-                  infrastructure.
-                </p>
-
-                <p>
-                  In addition, our motto is to produce perfect performances with
-                  accumulated know-how and take responsibility for the end
-                  accurately and reliably.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="about-cont">
-            <div class="text-wrap">
-              <div class="center kor active">
-                <p>
-                  특히 주식회사 고엔터테인먼트는 내한공연에 대한 이해도가 높은
-                  기업으로 국·내외의 최정상 아티스트를 섭외하고 최고의 공연들을
-                  유치하고 있습니다.
-                </p>
-
-                <p>
-                  최근 문화시장의 규모가 급속도로 발전하며, 고부가가치 산업인
-                  공연 분야의 시너지를 추구하고자 주식회사 고엔터테인먼트는
-                  다양한 콘텐츠 개발에 나서고 있으며, 공연의 전반적인 분야에
-                  걸친 사업을 전개해 나갈 것입니다.
-                </p>
-              </div>
-              <div class="center en">
-                <p>
-                  In particular, Go Entertainment Co., Ltd. is a company with a
-                  high understanding of WORLD POP SHOW, recruiting top artists
-                  at home and abroad and attracting the best performances.
-                </p>
-
-                <p>
-                  In recent years, the scale of the cultural market has rapidly
-                  developed, and in order to pursue synergy in the performance
-                  field, which is a high value-added industry, Go Entertainment
-                  Co., Ltd. is developing various contents and will develop its
-                  business across the overall field of performance.
-                </p>
-              </div>
-            </div>
-            <div class="img-wrap">
-              <img src="./img/about-sec2.jpg" alt="stage image" />
-            </div>
-          </div>
-        </div>
-        <div class="about-bg">
-          <img src="./img/people.png" alt="front stage people" />
-        </div>
-      </section>
-    </main>
-
-    <div class="history-modal modal">
-      <!--/*
-    <div class="modal-cont">
-        <div class="img-wrap">
-            <img src="${data.img}" alt="${data.tit} poster image" />
-        </div>
-        <div class="text-wrap">
-            <h3 class="tit">${data.tit}</h3>
-            <p class="date">${data.date}</p>
-            <p class="des">${data.des}</p>
-        </div>
+      <section id="about" class="fp-section">2</section>
+      <section id="news" class="fp-section">3</section>
+      <section id="history" class="fp-section">4</section>
+      <section id="contact" class="fp-section">5</section>
     </div>
-    */-->
-    </div>
-    <div class="main-modal modal">
-      <h2 class="main-modal-tit">FOCUS ON</h2>
-      <!--/*
-      <div class="modal-cont">
-          <div class="img-wrap">
-            <img src="${data.modal.img}" alt="${data.modal.tit} poster image" />
-          </div>
-          <div class="text-wrap">
-            <h3 class="tit">${data.modal.tit}</h3>
-            <p class="date">${data.modal.date}</p>
-            <p class="des">${data.modal.des}</p>
-          </div>
-      </div>
-    */-->
-    </div>
-    <div class="dim"></div>
-
-    <!-- footer -->
-    <footer class="footer contact">
-      <address>
-        <dl>
-          <dd>
-            <h2>Go Entertainment</h2>
-          </dd>
-        </dl>
-        <dl>
-          <dt><span class="title">CEO</span></dt>
-          <dd><span>한원희</span></dd>
-        </dl>
-        <dl>
-          <dt><span class="title">Business Number</span></dt>
-          <dd><span>748-88-00624</span></dd>
-        </dl>
-        <dl>
-          <dt><span class="title">Address</span></dt>
-          <dd>
-            <span>서울특별시 마포구 동교로 136-6, 301호(서교동, 서강빌딩)</span>
-          </dd>
-          <dd>
-            <span>136-6, Donggyo-ro, Mapo-gu, Seoul, Republic of Korea</span>
-          </dd>
-        </dl>
-        <dl>
-          <dt><span class="title">Phone</span></dt>
-          <dd><a href="tel:02-322-1090">+82-(2)-322-1090</a></dd>
-        </dl>
-        <dl>
-          <dt><span class="title">Mail</span></dt>
-          <dd><a href="mailto:info@goentmt.com">info@goentmt.com</a></dd>
-        </dl>
-        <div class="copy-wrap">
-          <p>created by WebDorizm</p>
-          <p>copyright&copy; Go Entertainment, All Rights Reserved.</p>
-        </div>
-      </address>
-    </footer>
   </body>
 </html>
