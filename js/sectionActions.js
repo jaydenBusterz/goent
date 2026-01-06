@@ -1,5 +1,6 @@
 $(function () {
   const $header = $("header");
+  const $globalBg = $("#global-bg");
 
   function typeText(el, text, speed = 90) {
     el.textContent = "";
@@ -23,6 +24,9 @@ $(function () {
   const sectionActions = {
     home($section) {
       $header.removeClass("black");
+
+      // ✅ home에서는 global-bg 숨김
+      $globalBg.addClass("is-hidden");
 
       const typingEl = $section.find(".typing")[0];
       const $cursor = $section.find(".cursor");
@@ -49,6 +53,9 @@ $(function () {
 
     default() {
       $header.addClass("black");
+
+      // ✅ home이 아닌 모든 섹션에서 global-bg 노출
+      $globalBg.removeClass("is-hidden");
     },
   };
 
@@ -62,6 +69,7 @@ $(function () {
     }
   });
 });
+
 $(function () {
   // coming soon data load
   $.getJSON("./data/comingsoon.json")
