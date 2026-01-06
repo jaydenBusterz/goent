@@ -36,6 +36,18 @@ $(function () {
     $gnbItems.eq(index).addClass("active");
 
     $(document).trigger("section:active", [$current, index]);
+
+    $(document).on("section:active", function (e, $section, index) {
+      const $bg = $("#global-bg");
+
+      if (index === 0) {
+        $bg.addClass("is-hidden");
+      } else {
+        setTimeout(() => {
+          $bg.removeClass("is-hidden");
+        }, 300);
+      }
+    });
   }
 
   /* ===============================
@@ -83,10 +95,10 @@ $(function () {
      resize → 맨 위
   =============================== */
   let resizeTimer = null;
-  $(window).on("resize", function () {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(init, 150);
-  });
+  // $(window).on("resize", function () {
+  //   clearTimeout(resizeTimer);
+  //   resizeTimer = setTimeout(init, 150);
+  // });
 
   /* ===============================
      wheel (delta 누적)

@@ -67,6 +67,11 @@
 
   <body id="fullpage-wrapper">
     <header id="header">
+      <h1 class="logo-img">
+        <a href="/">
+          <img src="./img/logo.png" alt="GO Entertainment, 고 엔터테인먼트" />
+        </a>
+      </h1>
       <nav>
         <ul class="gnb">
           <li class="active"><a href="#home">Home</a></li>
@@ -76,14 +81,22 @@
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
+      <h6 class="lan-img">
+        <i></i>
+        <span>KOR</span>
+      </h6>
     </header>
+
+    <div id="global-bg" class="is-hidden"></div>
 
     <div id="fullpage">
       <section id="home" class="fp-section">
-        <div class="hero">
+        <div class="home-title-wrap">
           <h1 class="title">
-            <span class="typing">“We make wonderful show”</span>
-            <span class="cursor">|</span>
+            <div class="typing-wrap">
+              <span class="typing">“We make wonderful show”</span>
+              <span class="cursor">|</span>
+            </div>
           </h1>
 
           <p class="subtitle">
@@ -91,10 +104,65 @@
           </p>
         </div>
       </section>
-      <section id="about" class="fp-section">2</section>
-      <section id="news" class="fp-section">3</section>
-      <section id="history" class="fp-section">4</section>
-      <section id="contact" class="fp-section">5</section>
+      <section id="about" class="fp-section"></section>
+      <section id="news" class="fp-section">
+        <div class="img-wrap">
+          <img
+            src="./img/coming-soon/coming-soon.png"
+            alt="COMING SOON SHOW"
+            class="cs-img"
+          />
+          <div class="text-wrap">
+            <h3 class="cs-tit"></h3>
+            <div class="sub-text-wrap">
+              <p class="cs-date"></p>
+              <p class="cs-des"></p>
+            </div>
+          </div>
+        </div>
+        <h4 class="bg-text">COMING SOON SHOW</h4>
+      </section>
+      <section id="history" class="fp-section">
+        <div class="history-wrap">
+          <div class="history-tab-wrap">
+            <h2 class="history-title">History</h2>
+
+            <ul class="history-tabs"></ul>
+          </div>
+          <!-- <div class="history-list">
+            <div class="history-swiper-inner">
+              <div class="history-swiper swiper">
+                <div class="swiper-wrapper"></div>
+              </div>
+            </div>
+          </div> -->
+          <div class="history-scroll">
+            <div class="history-track"></div>
+          </div>
+        </div>
+      </section>
+      <section id="contact" class="fp-section">
+        <div class="contact-wrapper">
+          <div class="text-wrap">
+            <h6>Contact us</h6>
+            <div class="dl-wrap">
+              <dl>
+                <dt>Address</dt>
+                <dd>서울특별시 마포구 서교동 464-46, 301호(서강빌딩)</dd>
+              </dl>
+              <dl>
+                <dt>TEL</dt>
+                <dd>02 - 322 - 1090</dd>
+              </dl>
+              <dl>
+                <dt>E-Mail</dt>
+                <dd>info@goentmt.com</dd>
+              </dl>
+            </div>
+          </div>
+          <div class="map"></div>
+        </div>
+      </section>
     </div>
   </body>
 </html>

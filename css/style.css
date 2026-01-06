@@ -1,5 +1,5 @@
 /* common */
-.noscroll {
+/* .noscroll {
   overflow: hidden;
 }
 
@@ -53,10 +53,10 @@
   100% {
     transform: translateX(-100%);
   }
-}
+} */
 
 /* header */
-header {
+/* header {
   .logo-img {
     position: fixed;
     top: 20px;
@@ -766,10 +766,9 @@ footer {
       color: #9a9a9a;
     }
   }
-}
-
+} */
+/* 
 @media screen and (max-width: 768px) {
-  /* header */
   header {
     .logo-img {
       top: 15px;
@@ -1058,7 +1057,7 @@ footer {
   footer {
     padding: 20px;
   }
-}
+} */
 
 /* S ::: renewal ::: S */
 
@@ -1068,7 +1067,7 @@ footer {
     transform: translateY(20px);
   }
   to {
-    opacity: 1;
+    opacity: 0.8;
     transform: translateY(0);
   }
 }
@@ -1085,21 +1084,85 @@ footer {
     left: 0;
     width: 100%;
     z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    &.black {
+      .logo-img {
+        background: url("../img/logo-black.png") no-repeat center / cover;
+      }
+      .gnb {
+        li {
+          a {
+            color: #000;
+          }
+        }
+      }
+      .lan-img {
+        i {
+          background: url("../img/lan-black.png") no-repeat center / cover;
+        }
+        span {
+          color: #000;
+        }
+      }
+    }
+    .logo-img {
+      transition: all 0.3s ease;
+      position: absolute;
+      top: 50%;
+      left: 80px;
+      transform: translateY(-50%);
+      z-index: 10;
+      background: url("../img/logo.png") no-repeat center / cover;
+      width: 58px;
+      height: 48px;
+      img {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+    .lan-img {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      position: absolute;
+      top: 50%;
+      right: 80px;
+      transform: translateY(-50%);
+      cursor: pointer;
+      i {
+        transition: all 0.3s ease;
+        display: block;
+        width: 20px;
+        height: 20px;
+        background: url("../img/lan.png") no-repeat center / cover;
+      }
+      span {
+        transition: all 0.3s ease;
+        font-size: 16px;
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: 600;
+        line-height: 1.4;
+      }
+    }
   }
 
   .gnb {
     display: flex;
     gap: 30px;
-    padding: 20px 40px;
     li {
-      &.active a {
-        color: #fff;
-        font-weight: 700;
-      }
       a {
-        color: #aaa;
+        transition: all 0.3s ease;
+        color: #fff;
         text-decoration: none;
-        font-size: 16px;
+        font-size: 18px;
+        line-height: 1.4;
+        font-weight: 600;
+        text-transform: uppercase;
+        cursor: pointer;
       }
     }
   }
@@ -1123,58 +1186,357 @@ footer {
     color: #fff;
     transition: opacity 0.6s ease;
     box-sizing: border-box;
-
-    &:nth-child(1) {
-      background: #111;
-    }
-    &:nth-child(2) {
-      background: #222;
-    }
-    &:nth-child(3) {
-      background: #333;
-    }
-    &:nth-child(4) {
-      background: #444;
-    }
-    &:nth-child(5) {
-      background: #555;
-    }
+    z-index: 8;
+    position: relative;
   }
+
+  #global-bg {
+    position: fixed;
+    inset: 0;
+    background: #fff url("../img/white-point-bg.webp") no-repeat center / cover;
+    z-index: -1;
+    width: 100vw;
+    height: 100vh;
+
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+
+  /* 숨김 상태 */
+  #global-bg.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
   #home {
-    background: url("../img/renewal/main-bg.webp") no-repeat center center/cover;
+    position: relative;
+    animation-delay: 2s;
+    background: #000; /* 초기 검은 배경 */
+    overflow: hidden;
+    &::before {
+      z-index: 1;
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url("../img/renewal/main-bg.webp") no-repeat center center /
+        cover;
+      opacity: 0;
+      transition: opacity 1s 0.3s ease;
+    }
     &.active {
+      &::before {
+        opacity: 1;
+      }
+
       .title {
         opacity: 1;
       }
       .subtitle {
         animation: fadeUp 0.8s ease forwards;
-        animation-delay: 1.4s;
+        animation-delay: 2.4s;
       }
     }
-    .hero {
-      text-align: center;
-      color: #fff;
+
+    .home-title-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      align-items: center;
+      position: relative;
+      z-index: 10;
+      .title {
+        text-align: center;
+        .typing-wrap {
+          padding-left: 26px;
+
+          span {
+            line-height: 1.4;
+            font-size: 72px;
+            font-weight: 700;
+          }
+          .cursor {
+            display: inline-block;
+            margin-left: 4px;
+            animation: blink 1s infinite;
+          }
+        }
+      }
+
+      .subtitle {
+        font-weight: 300;
+        line-height: 1.4;
+        font-size: 24px;
+        letter-spacing: -0.6px;
+
+        opacity: 0;
+        transform: translateY(20px);
+      }
     }
-    .title,
-    .subtitle {
+  }
+  #news {
+    .img-wrap {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translate(-50%, -60%);
+      transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+
+      z-index: 7;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+
+      img {
+        display: block;
+        width: 360px;
+        height: 510px;
+        transform: scale(0.8);
+        transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .text-wrap {
+        position: absolute;
+        top: 20px;
+        right: -310px;
+        width: 265px;
+
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+
+        h3 {
+          word-break: keep-all;
+          color: #000;
+          font-size: 28px;
+          line-height: 1.3;
+          font-weight: 700;
+        }
+
+        p {
+          font-size: 16px;
+          line-height: 1.4;
+          color: #000;
+        }
+      }
     }
 
-    .title {
-      font-size: 64px;
-      font-weight: 700;
+    .bg-text {
+      position: absolute;
+      z-index: 1;
+      width: 100%;
+      text-align: center;
+      bottom: 15%;
+      left: 50%;
+
+      font-size: 9vw;
+      background: linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0.05) 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+
+      font-weight: 800;
+      opacity: 0;
+      transform: translate(-50%, -10%);
+      transition: opacity 1s ease, transform 1s ease;
     }
 
-    .cursor {
-      display: inline-block;
-      margin-left: 4px;
-      animation: blink 1s infinite;
-    }
+    &.active {
+      .img-wrap {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+        transition-delay: 0.5s;
 
-    .subtitle {
-      margin-top: 20px;
-      font-size: 16px;
+        img {
+          transform: scale(1);
+          transition-delay: 0.5s;
+        }
+
+        .text-wrap {
+          opacity: 1;
+          transform: translateY(0);
+          transition-delay: 0.7s;
+        }
+      }
+
+      .bg-text {
+        opacity: 0.2;
+        transform: translate(-50%, 0);
+        transition-delay: 0.9s;
+      }
+    }
+  }
+  #history {
+    overflow: hidden; /* 세로는 막고 */
+
+    .history-wrap {
+      display: flex;
+      flex-direction: column;
+      padding-top: 7vw;
+      height: 100%;
+      width: 100%;
+      gap: 130px;
+      .history-tab-wrap {
+        display: flex;
+        align-items: center;
+        margin: 0 auto;
+        gap: 400px;
+        h2 {
+          font-size: 56px;
+          line-height: 1.3;
+          font-weight: 800;
+          color: #000;
+        }
+        .history-tabs {
+          display: flex;
+          gap: 40px;
+          align-items: center;
+          li {
+            &.active {
+              button {
+                position: relative;
+                color: #a5112f;
+                font-weight: 700;
+                &::after {
+                  content: "";
+                  display: block;
+                  width: 100%;
+                  height: 2px;
+                  background: #a5112f;
+                }
+              }
+            }
+            button {
+              appearance: none;
+              border: 0 none;
+              background: transparent;
+              cursor: pointer;
+              font-size: 20px;
+              line-height: 1.4;
+              font-weight: 600;
+              color: #000;
+            }
+          }
+        }
+      }
+      .history-scroll {
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        width: 100%;
+        max-width: 100%;
+
+        /* 🔥 flex/grid 안에 있을 때 스크롤 안 생기는 원인 해결 */
+        min-width: 0;
+
+        /* 혹시 inline/flex item 이상 동작 방지 */
+        display: block;
+
+        cursor: grab;
+      }
+
+      .history-scroll,
+      .history-scroll * {
+        user-select: none; /* 텍스트 선택 방지 */
+        -webkit-user-drag: none; /* 이미지 드래그 방지 (webkit) */
+      }
+
+      .history-scroll.is-dragging {
+        cursor: grabbing;
+        user-select: none;
+      }
+
+      .history-track {
+        display: flex;
+        width: max-content; /* 🔥 트랙이 콘텐츠만큼 넓어지게 */
+      }
+
+      .history-year {
+        display: flex;
+        gap: 12px;
+        padding-right: 12px;
+        flex-shrink: 0;
+      }
+
+      .history-card {
+        flex-shrink: 0;
+      }
+
+      .img-wrap {
+        width: 400px;
+        position: relative;
+        &::after {
+          content: "";
+          display: block;
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          background: rgba(0, 0, 0, 0.6);
+        }
+        &.active {
+          &::after {
+            display: none;
+          }
+        }
+      }
+
+      .img-wrap img {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+  #contact {
+    .contact-wrapper {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      flex-direction: column;
+      justify-content: flex-end;
+      .text-wrap {
+        display: flex;
+        align-items: center;
+        gap: 180px;
+        margin: 0 auto 40px;
+        h6 {
+          min-width: 420px;
+          font-size: 56px;
+          line-height: 1.3;
+          color: #000;
+          font-weight: 800;
+        }
+        .dl-wrap {
+          display: flex;
+          gap: 68px;
+          dl {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            dt {
+              font-size: 24px;
+              font-weight: 500;
+              line-height: 1.4;
+              color: #000;
+              opacity: 0.9;
+            }
+            dd {
+              font-size: 20px;
+              line-height: 1.4;
+              color: #000;
+              opacity: 0.7;
+            }
+          }
+        }
+      }
+      .map {
+        width: 100%;
+        height: 40vh;
+        background: url("../img/renewal/map.webp") center / cover;
+      }
     }
   }
 }
