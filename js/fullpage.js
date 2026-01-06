@@ -13,6 +13,11 @@ $(function () {
   let positions = [];
 
   /* ===============================
+     ★ Google Map 예외용 전역 플래그
+  =============================== */
+  window.disableFullpageWheel = false;
+
+  /* ===============================
      섹션 위치(px) 계산
   =============================== */
   function calcPositions() {
@@ -26,7 +31,7 @@ $(function () {
   }
 
   /* ===============================
-     active 관리 + 히어로 트리거
+     active 관리 + section 이벤트
   =============================== */
   function setActive(index) {
     $sections.removeClass("active");
@@ -35,19 +40,8 @@ $(function () {
     $gnbItems.removeClass("active");
     $gnbItems.eq(index).addClass("active");
 
+    // 🔥 section 활성화 이벤트
     $(document).trigger("section:active", [$current, index]);
-
-    $(document).on("section:active", function (e, $section, index) {
-      const $bg = $("#global-bg");
-
-      if (index === 0) {
-        $bg.addClass("is-hidden");
-      } else {
-        setTimeout(() => {
-          $bg.removeClass("is-hidden");
-        }, 300);
-      }
-    });
   }
 
   /* ===============================
@@ -92,20 +86,15 @@ $(function () {
   init();
 
   /* ===============================
-     resize → 맨 위
-  =============================== */
-  let resizeTimer = null;
-  // $(window).on("resize", function () {
-  //   clearTimeout(resizeTimer);
-  //   resizeTimer = setTimeout(init, 150);
-  // });
-
-  /* ===============================
      wheel (delta 누적)
+     ★ map 위에서는 fullpage 무시
   =============================== */
   document.addEventListener(
     "wheel",
     function (e) {
+      // 🔒 Google Map이 wheel 쓰는 중이면 fullpage 차단
+      if (window.disableFullpageWheel) return;
+
       e.preventDefault();
       if (isAnimating) return;
 

@@ -1377,7 +1377,7 @@ footer {
       padding-top: 7vw;
       height: 100%;
       width: 100%;
-      gap: 130px;
+      gap: 50px;
       .history-tab-wrap {
         display: flex;
         align-items: center;
@@ -1424,7 +1424,7 @@ footer {
       .history-scroll {
         overflow-x: auto;
         overflow-y: hidden;
-
+        padding: 70px 0;
         width: 100%;
         max-width: 100%;
 
@@ -1433,6 +1433,9 @@ footer {
 
         /* 혹시 inline/flex item 이상 동작 방지 */
         display: block;
+
+        -ms-overflow-style: none; /* IE, Edge */
+        scrollbar-width: none; /* Firefox */
 
         cursor: grab;
       }
@@ -1467,6 +1470,8 @@ footer {
       .img-wrap {
         width: 400px;
         position: relative;
+        overflow: visible;
+
         &::after {
           content: "";
           display: block;
@@ -1476,12 +1481,25 @@ footer {
           top: 0;
           left: 0;
           background: rgba(0, 0, 0, 0.6);
+          transition: all 0.4s ease;
+          transition-delay: 0s;
+          opacity: 1;
         }
         &.active {
+          z-index: 20;
           &::after {
-            display: none;
+            transform: scale(1.2);
+            opacity: 0;
+          }
+          .img-inner {
+            transform: scale(1.2);
           }
         }
+      }
+
+      .img-inner {
+        transform-origin: center center;
+        transition: transform 0.4s ease;
       }
 
       .img-wrap img {

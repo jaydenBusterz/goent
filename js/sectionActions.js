@@ -63,6 +63,27 @@ $(function () {
   });
 });
 $(function () {
+  // coming soon data load
+  $.getJSON("./data/comingsoon.json")
+    .done(function (data) {
+      console.log("loaded:", data);
+
+      const $news = $("#news");
+      if (!$news.length) return;
+
+      $news
+        .find(".cs-img")
+        .attr("src", data.img)
+        .attr("alt", data.tit + " poster image");
+
+      $news.find(".cs-tit").text(data.tit);
+      $news.find(".cs-date").text(data.date);
+      $news.find(".cs-des").text(data.des);
+    })
+    .fail(function (err) {
+      console.error("commingsoon.json 로드 실패", err);
+    });
+
   $.getJSON("./data/history.json").done(function (data) {
     const $tabs = $(".history-tabs");
     const $scroll = $(".history-scroll");
@@ -117,7 +138,9 @@ $(function () {
         $section.append(`
           <article class="history-card">
             <div class="img-wrap">
-              <img src="${item.img}" alt="${item.tit}" draggable="false" />
+              <div class="img-inner">
+                <img src="${item.img}" alt="${item.tit}" draggable="false" />
+              </div>
             </div>
           </article>
         `);
@@ -151,27 +174,58 @@ $(function () {
     /* =================================================
       5. scroll → active 이탈 감지 (🔥 핵심)
     ================================================= */
+    /* =================================================
+  3-1. 연도 / 탭 캐싱 (★ 반드시 필요)
+================================================= */
+    const $years = $track.find(".history-year");
+    const $tabItems = $tabs.find("li");
     $scroll.on("scroll", function () {
+      const scrollLeft = scrollEl.scrollLeft;
+      const center = scrollLeft + scrollEl.clientWidth / 2;
+
+      /* ===============================
+    (A) 현재 보이는 연도 → tab active
+  =============================== */
+      let activeYear = null;
+
+      $years.each(function () {
+        const start = this.offsetLeft;
+        const end = start + this.offsetWidth;
+
+        if (center >= start && center < end) {
+          activeYear = $(this).data("year");
+          return false; // break
+        }
+      });
+
+      if (activeYear !== null) {
+        $tabItems.each(function () {
+          $(this).toggleClass("active", $(this).data("year") === activeYear);
+        });
+      }
+
+      /* ===============================
+    (B) active 카드 viewport 이탈 감지
+  =============================== */
       const $active = $(".history-card .img-wrap.active");
       if ($active.length) {
         const $card = $active.closest(".history-card");
 
         if (!isInViewport($card[0])) {
-          // ✅ active 전체 제거
           $(".img-wrap").removeClass("active");
 
-          // ✅ hover 타이머 제거
           if (hoverTimer) {
             clearTimeout(hoverTimer);
             hoverTimer = null;
           }
 
-          // ✅ pause 전부 해제 → autoScroll 재개
           resetPause();
         }
       }
 
-      // 무한 스크롤 보정
+      /* ===============================
+    (C) 무한 스크롤 보정
+  =============================== */
       if (halfWidth && scrollEl.scrollLeft >= halfWidth) {
         scrollEl.scrollLeft -= halfWidth;
       }
@@ -180,7 +234,7 @@ $(function () {
     /* =================================================
       6. Auto Scroll
     ================================================= */
-    const AUTO_STEP = 2;
+    const AUTO_STEP = 3;
 
     function autoScroll() {
       if (!isPaused()) {
@@ -278,6 +332,38 @@ $(function () {
         clearTimeout(hoverTimer);
         hoverTimer = null;
       }
+    });
+
+    /* =================================================
+  TAB CLICK → 해당 연도 섹션으로 스크롤
+================================================= */
+    $tabs.on("click", "li", function () {
+      const year = $(this).data("year");
+
+      // 무한 트랙 중 앞쪽 원본만 타겟
+      const $target = $track.find(`.history-year[data-year="${year}"]`).first();
+
+      if (!$target.length) return;
+
+      // 클릭 중에는 autoScroll 멈춤
+      pauseByClick = true;
+
+      // tab active 처리
+      $tabs.find("li").removeClass("active");
+      $(this).addClass("active");
+
+      // target 위치 계산 (중앙보다 살짝 왼쪽)
+      const offset =
+        $target.position().left +
+        scrollEl.scrollLeft -
+        scrollEl.clientWidth * 0.3;
+
+      $scroll.stop().animate({ scrollLeft: offset }, 600, () => {
+        // 클릭 이동 끝난 뒤 autoScroll 재개
+        setTimeout(() => {
+          pauseByClick = false;
+        }, 500);
+      });
     });
 
     /* =================================================
