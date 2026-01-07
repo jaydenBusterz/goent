@@ -1496,7 +1496,7 @@ footer {
         }
         .history-tabs {
           display: flex;
-          gap: 40px;
+          gap: 24px;
           align-items: center;
           opacity: 0;
           transform: translateY(20%);
