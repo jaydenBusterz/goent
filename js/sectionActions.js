@@ -25,7 +25,6 @@ $(function () {
     home($section) {
       $header.removeClass("black");
 
-      // ✅ home에서는 global-bg 숨김
       $globalBg.addClass("is-hidden");
 
       const typingEl = $section.find(".typing")[0];
@@ -54,7 +53,6 @@ $(function () {
     default() {
       $header.addClass("black");
 
-      // ✅ home이 아닌 모든 섹션에서 global-bg 노출
       $globalBg.removeClass("is-hidden");
     },
   };
@@ -69,43 +67,54 @@ $(function () {
     }
   });
 });
-
 $(function () {
-  // coming soon data load
-  $.getJSON("./data/comingsoon.json")
-    .done(function (data) {
-      console.log("loaded:", data);
+  const MOBILE_MAX = 640;
+  const isMobile = () => window.innerWidth <= MOBILE_MAX;
+  const DRAG_THRESHOLD = 6;
 
-      const $news = $("#news");
-      if (!$news.length) return;
+  /* =================================================
+    COMING SOON
+  ================================================= */
+  $.getJSON("./data/comingsoon.json").done(function (data) {
+    const $news = $("#news");
+    if (!$news.length) return;
 
-      $news
-        .find(".cs-img")
-        .attr("src", data.img)
-        .attr("alt", data.tit + " poster image");
-
-      $news.find(".cs-tit").text(data.tit);
-      $news.find(".cs-date").text(data.date);
-      $news.find(".cs-des").text(data.des);
-    })
-    .fail(function (err) {
-      console.error("commingsoon.json 로드 실패", err);
+    $news.find(".cs-img").attr({
+      src: data.img,
+      alt: data.tit + " poster image",
     });
+    $news.find(".cs-tit").text(data.tit);
+    $news.find(".cs-date").text(data.date);
+    $news.find(".cs-des").text(data.des);
+  });
 
+  /* =================================================
+    HISTORY
+  ================================================= */
   $.getJSON("./data/history.json").done(function (data) {
     const $tabs = $(".history-tabs");
+    const $tabsWrap = $(".overflow-wrap");
     const $scroll = $(".history-scroll");
     const $track = $(".history-track");
     const scrollEl = $scroll[0];
+    const tabsWrapEl = $tabsWrap[0];
 
-    if (!$tabs.length || !$scroll.length || !$track.length) return;
+    if (!$tabs.length || !$scroll.length || !$track.length || !$tabsWrap.length)
+      return;
 
-    /* =================================================
+    /* =========================
       PAUSE STATE
-    ================================================= */
+    ========================= */
     let pauseByHover = false;
     let pauseByDrag = false;
     let pauseByClick = false;
+
+    function isPaused() {
+      if (isMobile()) {
+        return pauseByDrag || pauseByClick;
+      }
+      return pauseByHover || pauseByDrag || pauseByClick;
+    }
 
     function resetPause() {
       pauseByHover = false;
@@ -113,19 +122,15 @@ $(function () {
       pauseByClick = false;
     }
 
-    function isPaused() {
-      return pauseByHover || pauseByDrag || pauseByClick;
-    }
-
-    /* =================================================
-      HOVER DELAY STATE
-    ================================================= */
+    /* =========================
+      HOVER TIMER (PC)
+    ========================= */
     let hoverTimer = null;
     const HOVER_ACTIVE_DELAY = 1200;
 
-    /* =================================================
-      1. 탭 생성
-    ================================================= */
+    /* =========================
+      TAB RENDER
+    ========================= */
     data.forEach((item, i) => {
       $tabs.append(`
         <li class="${i === 0 ? "active" : ""}" data-year="${item.year}">
@@ -134,13 +139,13 @@ $(function () {
       `);
     });
 
-    /* =================================================
-      2. 연도 섹션 렌더
-    ================================================= */
+    /* =========================
+      SECTION RENDER
+    ========================= */
     data.forEach((yearItem) => {
-      const $section = $(
-        `<section class="history-year" data-year="${yearItem.year}"></section>`
-      );
+      const $section = $(`
+        <section class="history-year" data-year="${yearItem.year}"></section>
+      `);
 
       yearItem.list.forEach((item) => {
         $section.append(`
@@ -157,9 +162,9 @@ $(function () {
       $track.append($section);
     });
 
-    /* =================================================
-      3. 무한 스크롤용 복제
-    ================================================= */
+    /* =========================
+      INFINITE CLONE
+    ========================= */
     $track.append($track.children().clone());
 
     let halfWidth = 0;
@@ -167,87 +172,97 @@ $(function () {
       halfWidth = $track[0].scrollWidth / 2;
     }
 
-    /* =================================================
-      4. viewport 판별
-    ================================================= */
+    /* =========================
+      VIEWPORT CHECK
+    ========================= */
     function isInViewport(el) {
       const elRect = el.getBoundingClientRect();
-      const containerRect = scrollEl.getBoundingClientRect();
-
-      return (
-        elRect.right > containerRect.left && elRect.left < containerRect.right
-      );
+      const contRect = scrollEl.getBoundingClientRect();
+      return elRect.right > contRect.left && elRect.left < contRect.right;
     }
 
-    /* =================================================
-      5. scroll → active 이탈 감지 (🔥 핵심)
-    ================================================= */
-    /* =================================================
-  3-1. 연도 / 탭 캐싱 (★ 반드시 필요)
-================================================= */
+    function ensureActiveTabVisible($activeTab) {
+      if (!$activeTab || !$activeTab.length) return;
+
+      const tabEl = $activeTab[0];
+
+      const tabRect = tabEl.getBoundingClientRect();
+      const wrapRect = tabsWrapEl.getBoundingClientRect();
+
+      const PADDING = 8;
+      const fullyVisible =
+        tabRect.left >= wrapRect.left + PADDING &&
+        tabRect.right <= wrapRect.right - PADDING;
+
+      if (fullyVisible) return;
+
+      const tabCenter = tabRect.left + tabRect.width / 2;
+      const wrapCenter = wrapRect.left + wrapRect.width / 2;
+      const diff = tabCenter - wrapCenter;
+
+      tabsWrapEl.scrollLeft += diff;
+    }
+
+    /* =========================
+      SCROLL EVENT
+    ========================= */
     const $years = $track.find(".history-year");
     const $tabItems = $tabs.find("li");
-    $scroll.on("scroll", function () {
-      const scrollLeft = scrollEl.scrollLeft;
-      const center = scrollLeft + scrollEl.clientWidth / 2;
+    let lastActiveYear = null;
 
-      /* ===============================
-    (A) 현재 보이는 연도 → tab active
-  =============================== */
+    $scroll.on("scroll", function () {
+      const center = scrollEl.scrollLeft + scrollEl.clientWidth / 2;
       let activeYear = null;
 
       $years.each(function () {
         const start = this.offsetLeft;
         const end = start + this.offsetWidth;
-
         if (center >= start && center < end) {
           activeYear = $(this).data("year");
-          return false; // break
+          return false;
         }
       });
 
-      if (activeYear !== null) {
+      if (activeYear) {
         $tabItems.each(function () {
           $(this).toggleClass("active", $(this).data("year") === activeYear);
         });
+
+        if (activeYear !== lastActiveYear) {
+          lastActiveYear = activeYear;
+          const $activeTab = $tabItems
+            .filter(function () {
+              return $(this).data("year") === activeYear;
+            })
+            .first();
+
+          ensureActiveTabVisible($activeTab);
+        }
       }
 
-      /* ===============================
-    (B) active 카드 viewport 이탈 감지
-  =============================== */
       const $active = $(".history-card .img-wrap.active");
       if ($active.length) {
         const $card = $active.closest(".history-card");
-
         if (!isInViewport($card[0])) {
           $(".img-wrap").removeClass("active");
-
-          if (hoverTimer) {
-            clearTimeout(hoverTimer);
-            hoverTimer = null;
-          }
-
+          hoverTimer && clearTimeout(hoverTimer);
           resetPause();
         }
       }
 
-      /* ===============================
-    (C) 무한 스크롤 보정
-  =============================== */
       if (halfWidth && scrollEl.scrollLeft >= halfWidth) {
         scrollEl.scrollLeft -= halfWidth;
       }
     });
 
-    /* =================================================
-      6. Auto Scroll
-    ================================================= */
-    const AUTO_STEP = 3;
+    /* =========================
+      AUTO SCROLL
+    ========================= */
+    const getAutoStep = () => (isMobile() ? 2 : 3);
 
     function autoScroll() {
       if (!isPaused()) {
-        scrollEl.scrollLeft += AUTO_STEP;
-
+        scrollEl.scrollLeft += getAutoStep();
         if (scrollEl.scrollLeft >= halfWidth) {
           scrollEl.scrollLeft -= halfWidth;
         }
@@ -255,35 +270,28 @@ $(function () {
       requestAnimationFrame(autoScroll);
     }
 
-    /* =================================================
-      7. Scroll 영역 Hover → pause
-    ================================================= */
-    $scroll.on("mouseenter", () => (pauseByHover = true));
-    $scroll.on("mouseleave", () => {
-      // hover 타이머 제거
-      if (hoverTimer) {
-        clearTimeout(hoverTimer);
-        hoverTimer = null;
-      }
-
-      // ✅ active 전부 제거
-      $(".img-wrap").removeClass("active");
-
-      // ✅ 3D transform 원복 (active로만 제어해도 되지만 안전하게)
-      $(".history-card .img-wrap").css("transform", "");
-
-      // ✅ pause 전부 해제 → autoScroll 계속
-      resetPause();
+    /* =========================
+      HOVER PAUSE (PC)
+    ========================= */
+    $scroll.on("mouseenter", function () {
+      if (!isMobile()) pauseByHover = true;
     });
 
-    /* =================================================
-      8. Drag to Scroll
-    ================================================= */
+    $scroll.on("mouseleave", function () {
+      if (!isMobile()) {
+        $(".img-wrap").removeClass("active");
+        hoverTimer && clearTimeout(hoverTimer);
+        resetPause();
+      }
+    });
+
+    /* =========================
+      DRAG
+    ========================= */
     let isDragging = false;
     let startX = 0;
     let startScrollLeft = 0;
     let moved = false;
-    const DRAG_THRESHOLD = 6;
 
     $scroll.on("mousedown touchstart", function (e) {
       const x = e.pageX || e.originalEvent.touches[0].pageX;
@@ -292,142 +300,141 @@ $(function () {
       moved = false;
       startX = x;
       startScrollLeft = scrollEl.scrollLeft;
-
       pauseByDrag = true;
 
-      if (hoverTimer) {
-        clearTimeout(hoverTimer);
-        hoverTimer = null;
-      }
+      hoverTimer && clearTimeout(hoverTimer);
     });
 
-    $(document).on("mousemove touchmove", function (e) {
+    $scroll.on("mousemove touchmove", function (e) {
       if (!isDragging) return;
 
       const x = e.pageX || e.originalEvent.touches[0].pageX;
       const diff = x - startX;
 
       if (Math.abs(diff) > DRAG_THRESHOLD) {
+        // 🔥 drag 확정 시에만 active 해제
+        if ($(".img-wrap.active").length) {
+          $(".img-wrap").removeClass("active");
+          pauseByClick = false;
+          pauseByHover = false;
+        }
+
         moved = true;
         scrollEl.scrollLeft = startScrollLeft - diff;
       }
     });
 
-    $(document).on("mouseup touchend touchcancel", function () {
-      if (!isDragging) return;
-
+    $scroll.on("mouseup touchend touchcancel", function () {
       isDragging = false;
       pauseByDrag = false;
     });
 
-    /* =================================================
-      9. hover → delay active
-    ================================================= */
-    $scroll.on("mouseenter", ".history-card", function () {
-      if (isPaused()) return;
+    /* =========================
+      PC HOVER ACTIVE
+    ========================= */
+    if (!isMobile()) {
+      $scroll.on("mouseenter", ".history-card", function () {
+        if (isPaused()) return;
 
-      const $card = $(this);
+        const $card = $(this);
+        hoverTimer = setTimeout(() => {
+          $(".img-wrap").removeClass("active");
+          $card.find(".img-wrap").addClass("active");
+          pauseByHover = true;
+        }, HOVER_ACTIVE_DELAY);
+      });
 
-      hoverTimer = setTimeout(() => {
-        $(".img-wrap").removeClass("active");
-        $card.find(".img-wrap").addClass("active");
-        pauseByHover = true;
-      }, HOVER_ACTIVE_DELAY);
-    });
+      $scroll.on("mouseleave", ".history-card", function () {
+        hoverTimer && clearTimeout(hoverTimer);
+      });
+    }
 
-    $scroll.on("mouseleave", ".history-card", function () {
-      if (hoverTimer) {
-        clearTimeout(hoverTimer);
-        hoverTimer = null;
-      }
-    });
+    /* =========================
+      MOBILE TAP ACTIVE (정상 토글)
+    ========================= */
+    if (isMobile()) {
+      $scroll.on("click", ".history-card", function () {
+        if (moved) {
+          moved = false;
+          return;
+        }
 
-    /* =================================================
-  TAB CLICK → 해당 연도 섹션으로 스크롤
-================================================= */
+        const $img = $(this).find(".img-wrap");
+        const wasActive = $img.hasClass("active");
+
+        $(".img-wrap").not($img).removeClass("active");
+
+        if (wasActive) {
+          $img.removeClass("active");
+          pauseByClick = false;
+        } else {
+          $img.addClass("active");
+          pauseByClick = true;
+        }
+
+        moved = false;
+      });
+    }
+
+    /* =========================
+      TAB CLICK
+    ========================= */
     $tabs.on("click", "li", function () {
       const year = $(this).data("year");
-
-      // 무한 트랙 중 앞쪽 원본만 타겟
       const $target = $track.find(`.history-year[data-year="${year}"]`).first();
-
       if (!$target.length) return;
 
-      // 클릭 중에는 autoScroll 멈춤
       pauseByClick = true;
 
-      // tab active 처리
       $tabs.find("li").removeClass("active");
       $(this).addClass("active");
 
-      // target 위치 계산 (중앙보다 살짝 왼쪽)
+      // ✅ 클릭한 탭도 보이게 맞춰줌(특히 모바일에서 유용)
+      ensureActiveTabVisible($(this));
+
       const offset =
         $target.position().left +
         scrollEl.scrollLeft -
         scrollEl.clientWidth * 0.3;
 
       $scroll.stop().animate({ scrollLeft: offset }, 600, () => {
-        // 클릭 이동 끝난 뒤 autoScroll 재개
-        setTimeout(() => {
-          pauseByClick = false;
-        }, 500);
+        pauseByClick = false;
       });
     });
 
-    /* =================================================
-      10. 클릭 → active
-    ================================================= */
-    $scroll.on("click", ".history-card", function (e) {
-      if (moved) {
-        e.preventDefault();
-        return;
-      }
-
-      $(".img-wrap").removeClass("active");
-      $(this).find(".img-wrap").addClass("active");
-
-      pauseByClick = true;
-      setTimeout(() => (pauseByClick = false), 800);
-    });
-
-    /* =================================================
-      11. 시작
-    ================================================= */
+    /* =========================
+      START
+    ========================= */
     setTimeout(() => {
       updateWidth();
+      // 초기 active(0번째)도 보정
+      ensureActiveTabVisible($tabs.find("li.active").first());
       requestAnimationFrame(autoScroll);
     }, 500);
   });
 });
 
+/* =================================================
+  3D TILT (PC ONLY)
+================================================= */
 $(document).on("mousemove", ".history-card .img-wrap.active", function (e) {
-  if (window.innerWidth < 1024) return;
+  if (window.innerWidth <= 900) return;
 
   const rect = this.getBoundingClientRect();
   const x = e.clientX - rect.left;
   const y = e.clientY - rect.top;
 
-  const cx = rect.width / 2;
-  const cy = rect.height / 2;
-
-  const rotateY = ((x - cx) / cx) * -7;
-  const rotateX = ((y - cy) / cy) * 7;
+  const rotateY = ((x - rect.width / 2) / rect.width) * -14;
+  const rotateX = ((y - rect.height / 2) / rect.height) * 14;
 
   this.style.transform = `
-      perspective(2000px)
-      rotateX(${rotateX}deg)
-      rotateY(${rotateY}deg)
-      scale(1)
-    `;
+    perspective(2000px)
+    rotateX(${rotateX}deg)
+    rotateY(${rotateY}deg)
+  `;
 });
 
 $(document).on("mouseleave", ".history-card .img-wrap.active", function () {
-  if (window.innerWidth < 1024) return;
-
-  this.style.transform = `
-      perspective(2000px)
-      rotateX(0deg)
-      rotateY(0deg)
-      scale(1)
-    `;
+  if (window.innerWidth <= 900) return;
+  this.style.transform = "perspective(2000px) rotateX(0) rotateY(0)";
 });
