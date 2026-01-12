@@ -67,6 +67,7 @@ $(function () {
     }
   });
 });
+
 $(function () {
   const MOBILE_MAX = 640;
   const isMobile = () => window.innerWidth <= MOBILE_MAX;
@@ -103,11 +104,12 @@ $(function () {
       return;
 
     /* =========================
-      PAUSE STATE
+      PAUSE / LOCK STATE
     ========================= */
     let pauseByHover = false;
     let pauseByDrag = false;
     let pauseByClick = false;
+    let lockByClick = false; // 🔥 PC 클릭 고정 상태
 
     function isPaused() {
       if (isMobile()) {
@@ -120,6 +122,7 @@ $(function () {
       pauseByHover = false;
       pauseByDrag = false;
       pauseByClick = false;
+      lockByClick = false;
     }
 
     /* =========================
@@ -181,24 +184,17 @@ $(function () {
       return elRect.right > contRect.left && elRect.left < contRect.right;
     }
 
-    function ensureActiveTabVisible($activeTab) {
-      if (!$activeTab || !$activeTab.length) return;
+    /* =========================
+      ACTIVE TAB FOLLOW
+    ========================= */
+    function ensureActiveTabVisible($tab) {
+      if (!$tab || !$tab.length) return;
 
-      const tabEl = $activeTab[0];
-
-      const tabRect = tabEl.getBoundingClientRect();
+      const tabRect = $tab[0].getBoundingClientRect();
       const wrapRect = tabsWrapEl.getBoundingClientRect();
 
-      const PADDING = 8;
-      const fullyVisible =
-        tabRect.left >= wrapRect.left + PADDING &&
-        tabRect.right <= wrapRect.right - PADDING;
-
-      if (fullyVisible) return;
-
-      const tabCenter = tabRect.left + tabRect.width / 2;
-      const wrapCenter = wrapRect.left + wrapRect.width / 2;
-      const diff = tabCenter - wrapCenter;
+      const diff =
+        tabRect.left + tabRect.width / 2 - (wrapRect.left + wrapRect.width / 2);
 
       tabsWrapEl.scrollLeft += diff;
     }
@@ -230,13 +226,9 @@ $(function () {
 
         if (activeYear !== lastActiveYear) {
           lastActiveYear = activeYear;
-          const $activeTab = $tabItems
-            .filter(function () {
-              return $(this).data("year") === activeYear;
-            })
-            .first();
-
-          ensureActiveTabVisible($activeTab);
+          ensureActiveTabVisible(
+            $tabItems.filter(`[data-year="${activeYear}"]`)
+          );
         }
       }
 
@@ -245,7 +237,6 @@ $(function () {
         const $card = $active.closest(".history-card");
         if (!isInViewport($card[0])) {
           $(".img-wrap").removeClass("active");
-          hoverTimer && clearTimeout(hoverTimer);
           resetPause();
         }
       }
@@ -279,6 +270,7 @@ $(function () {
 
     $scroll.on("mouseleave", function () {
       if (!isMobile()) {
+        if (lockByClick) return; // 🔥 클릭 고정 중이면 건드리지 않음
         $(".img-wrap").removeClass("active");
         hoverTimer && clearTimeout(hoverTimer);
         resetPause();
@@ -302,7 +294,10 @@ $(function () {
       startScrollLeft = scrollEl.scrollLeft;
       pauseByDrag = true;
 
-      hoverTimer && clearTimeout(hoverTimer);
+      if ($(".img-wrap.active").length) {
+        $(".img-wrap").removeClass("active");
+        resetPause();
+      }
     });
 
     $scroll.on("mousemove touchmove", function (e) {
@@ -312,13 +307,6 @@ $(function () {
       const diff = x - startX;
 
       if (Math.abs(diff) > DRAG_THRESHOLD) {
-        // 🔥 drag 확정 시에만 active 해제
-        if ($(".img-wrap.active").length) {
-          $(".img-wrap").removeClass("active");
-          pauseByClick = false;
-          pauseByHover = false;
-        }
-
         moved = true;
         scrollEl.scrollLeft = startScrollLeft - diff;
       }
@@ -334,7 +322,7 @@ $(function () {
     ========================= */
     if (!isMobile()) {
       $scroll.on("mouseenter", ".history-card", function () {
-        if (isPaused()) return;
+        if (isPaused() || lockByClick) return;
 
         const $card = $(this);
         hoverTimer = setTimeout(() => {
@@ -350,7 +338,29 @@ $(function () {
     }
 
     /* =========================
-      MOBILE TAP ACTIVE (정상 토글)
+      PC CLICK ACTIVE (🔥 FIXED)
+    ========================= */
+    if (!isMobile()) {
+      $scroll.on("click", ".history-card", function () {
+        const $img = $(this).find(".img-wrap");
+        const wasActive = $img.hasClass("active");
+
+        hoverTimer && clearTimeout(hoverTimer);
+
+        if (wasActive) {
+          $img.removeClass("active");
+          resetPause();
+        } else {
+          $(".img-wrap").removeClass("active");
+          $img.addClass("active");
+          pauseByClick = true;
+          lockByClick = true;
+        }
+      });
+    }
+
+    /* =========================
+      MOBILE TAP ACTIVE
     ========================= */
     if (isMobile()) {
       $scroll.on("click", ".history-card", function () {
@@ -366,7 +376,7 @@ $(function () {
 
         if (wasActive) {
           $img.removeClass("active");
-          pauseByClick = false;
+          resetPause();
         } else {
           $img.addClass("active");
           pauseByClick = true;
@@ -388,8 +398,6 @@ $(function () {
 
       $tabs.find("li").removeClass("active");
       $(this).addClass("active");
-
-      // ✅ 클릭한 탭도 보이게 맞춰줌(특히 모바일에서 유용)
       ensureActiveTabVisible($(this));
 
       const offset =
@@ -407,7 +415,6 @@ $(function () {
     ========================= */
     setTimeout(() => {
       updateWidth();
-      // 초기 active(0번째)도 보정
       ensureActiveTabVisible($tabs.find("li.active").first());
       requestAnimationFrame(autoScroll);
     }, 500);
