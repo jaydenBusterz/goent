@@ -89,7 +89,7 @@ $(function () {
     requestAnimationFrame(() => {
       $container.css(
         "transition",
-        `transform ${ANIMATION_TIME}ms cubic-bezier(0.77, 0, 0.175, 1)`
+        `transform ${ANIMATION_TIME}ms cubic-bezier(0.77, 0, 0.175, 1)`,
       );
     });
   }
@@ -116,7 +116,7 @@ $(function () {
         wheelDelta = 0;
       }
     },
-    { passive: false }
+    { passive: false },
   );
 
   /* ===============================
@@ -132,7 +132,7 @@ $(function () {
       touchStartY = e.touches[0].clientY;
       touchDeltaY = 0;
     },
-    { passive: true }
+    { passive: true },
   );
 
   document.addEventListener(
@@ -146,7 +146,7 @@ $(function () {
 
       e.preventDefault(); // iOS bounce 방지
     },
-    { passive: false }
+    { passive: false },
   );
 
   document.addEventListener("touchend", function () {

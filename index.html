@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
@@ -101,6 +101,11 @@
 
     <div id="fullpage">
       <section id="home" class="fp-section">
+        <div class="home-bg">
+          <img class="bg bg-a" />
+          <img class="bg bg-b" />
+        </div>
+
         <div class="home-title-wrap">
           <h1 class="title">
             <div class="typing-wrap">
@@ -217,4 +222,36 @@
       </section>
     </div>
   </body>
+
+  <script>
+    $(function () {
+      const total = 8;
+
+      let index = 2;
+      let currentIsA = true;
+
+      const $a = $(".bg-a");
+      const $b = $(".bg-b");
+
+      // 1️⃣ 최초 이미지 확정
+      $a.attr("src", "./img/renewal/main-bg-01.webp").addClass("active");
+      $b.removeClass("active");
+
+      function changeBg() {
+        const num = String(index).padStart(2, "0");
+        const src = `./img/renewal/main-bg-${num}.webp`;
+
+        const $current = currentIsA ? $a : $b;
+        const $next = currentIsA ? $b : $a;
+
+        $next.attr("src", src).addClass("active");
+        $current.removeClass("active");
+
+        currentIsA = !currentIsA;
+        index = index >= total ? 1 : index + 1;
+      }
+
+      setInterval(changeBg, 3000);
+    });
+  </script>
 </html>
