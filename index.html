@@ -49,6 +49,7 @@
     <script src="./js/common.js"></script>
     <script src="./js/sectionActions.js"></script>
     <script src="./js/fullpage.js"></script>
+    <script src="./js/i18n.js"></script>
     <!-- Google tag (gtag.js) -->
     <script
       async
@@ -91,10 +92,17 @@
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
-      <h6 class="lan-img">
-        <i></i>
-        <span>KOR</span>
-      </h6>
+      <div class="lang-select">
+        <h6 class="lan-img">
+          <i></i>
+          <span class="current-lang">KOR</span>
+        </h6>
+
+        <ul class="lang-dropdown">
+          <li data-lang="ko">KOR</li>
+          <li data-lang="en">ENG</li>
+        </ul>
+      </div>
     </header>
 
     <div id="global-bg" class="is-hidden"></div>
@@ -114,7 +122,7 @@
             </div>
           </h1>
 
-          <p class="subtitle">
+          <p class="subtitle" data-i18n="home.subtitle">
             공연문화의 중심에서 <br class="tablet-br" />검증된 전문성과 노하우를
             갖춘 업계 최고의 이력
           </p>
@@ -128,26 +136,29 @@
                 <img src="./img/renewal/about-logo.png" alt="about logo" />
               </h6>
               <div class="text-wrap">
-                <p>
+                <p data-i18n="about.p1">
                   주식회사 고엔터테인먼트는 공연기획, 연출, 제작사로 콘서트,
                   페스티벌,이벤트, 기업행사 등 공연문화의 중심에서
                   <br class="pc-br" />
                   검증된 전문성과 노하우를 갖추어 업계 최고의 이력을 자랑하고
                   있습니다.
                 </p>
-                <p>
+
+                <p data-i18n="about.p2">
                   주식회사 고엔터테인먼트는 검증된 인프라를 통해 효율적인
                   커뮤니케이션과 효과적인 운영으로 최고의 서비스를 제공합니다.
                   <br class="pc-br" />
                   또한, 축적된 노하우로 완벽한 공연을 만들어내며, 정확하고
                   확실하게 마지막까지 책임지고 임하는 것이 저희의 모토입니다.
                 </p>
-                <p>
+
+                <p data-i18n="about.p3">
                   특히 주식회사 고엔터테인먼트는 내한공연에 대한 이해도가 높은
                   기업으로 국·내외의 최정상 아티스트를 섭외하고 최고의 공연들을
                   유치하고 있습니다.
                 </p>
-                <p>
+
+                <p data-i18n="about.p4">
                   최근 문화시장의 규모가 급속도로 발전하며, 고부가가치 산업인
                   공연 분야의 시너지를 추구하고자 <br class="pc-br" />
                   주식회사 고엔터테인먼트는 다양한 콘텐츠 개발에 나서고 있으며,
@@ -205,7 +216,9 @@
             <div class="dl-wrap">
               <dl>
                 <dt>Address</dt>
-                <dd>서울특별시 마포구 서교동 464-46, 301호(서강빌딩)</dd>
+                <dd data-i18n="contact.address">
+                  서울특별시 마포구 동교로 136, 301호 (서교동)
+                </dd>
               </dl>
               <dl>
                 <dt>TEL</dt>
@@ -225,54 +238,72 @@
 
   <script>
     $(function () {
-      $(function () {
-        const TOTAL = 8;
+      const savedLang = localStorage.getItem("lang") || "ko";
+      window.setLanguage(savedLang);
 
-        let pool = Array.from({ length: TOTAL }, (_, i) => i + 1);
+      const TOTAL = 8;
 
-        function shuffle(arr) {
-          for (let i = arr.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [arr[i], arr[j]] = [arr[j], arr[i]];
-          }
+      let pool = Array.from({ length: TOTAL }, (_, i) => i + 1);
+
+      function shuffle(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+      }
+
+      let index = 0;
+      let currentIsA = true;
+
+      const $a = $(".bg-a");
+      const $b = $(".bg-b");
+
+      $a.attr("src", "./img/renewal/main-bg-01.webp").addClass("active");
+      $b.removeClass("active");
+
+      shuffle(pool);
+      pool = pool.filter((n) => n !== 1);
+
+      function changeBg() {
+        if (index >= pool.length) {
+          pool = Array.from({ length: TOTAL }, (_, i) => i + 1);
+          shuffle(pool);
+          index = 0;
         }
 
-        let index = 0;
-        let currentIsA = true;
+        const num = pool[index];
+        const src = `./img/renewal/main-bg-${String(num).padStart(2, "0")}.webp`;
 
-        const $a = $(".bg-a");
-        const $b = $(".bg-b");
+        const $current = currentIsA ? $a : $b;
+        const $next = currentIsA ? $b : $a;
 
-        $a.attr("src", "./img/renewal/main-bg-01.webp").addClass("active");
-        $b.removeClass("active");
+        $next.attr("src", src).addClass("active");
+        $current.removeClass("active");
 
-        shuffle(pool);
-        pool = pool.filter((n) => n !== 1);
+        currentIsA = !currentIsA;
+        index++;
+      }
 
-        function changeBg() {
-          if (index >= pool.length) {
-            pool = Array.from({ length: TOTAL }, (_, i) => i + 1);
-            shuffle(pool);
-            index = 0;
-          }
+      setTimeout(() => {
+        changeBg();
+        setInterval(changeBg, 3000);
+      }, 3000);
 
-          const num = pool[index];
-          const src = `./img/renewal/main-bg-${String(num).padStart(2, "0")}.webp`;
+      const $langSelect = $(".lang-select");
 
-          const $current = currentIsA ? $a : $b;
-          const $next = currentIsA ? $b : $a;
+      $(".lan-img").on("click", function (e) {
+        e.stopPropagation();
+        $langSelect.toggleClass("is-open");
+      });
 
-          $next.attr("src", src).addClass("active");
-          $current.removeClass("active");
+      $(".lang-dropdown li").on("click", function () {
+        const lang = $(this).data("lang");
+        window.setLanguage(lang);
+        $langSelect.removeClass("is-open");
+      });
 
-          currentIsA = !currentIsA;
-          index++;
-        }
-
-        setTimeout(() => {
-          changeBg();
-          setInterval(changeBg, 3000);
-        }, 3000);
+      $(document).on("click", function () {
+        $langSelect.removeClass("is-open");
       });
     });
   </script>
