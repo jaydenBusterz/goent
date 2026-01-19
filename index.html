@@ -225,33 +225,55 @@
 
   <script>
     $(function () {
-      const total = 8;
+      $(function () {
+        const TOTAL = 8;
 
-      let index = 2;
-      let currentIsA = true;
+        let pool = Array.from({ length: TOTAL }, (_, i) => i + 1);
 
-      const $a = $(".bg-a");
-      const $b = $(".bg-b");
+        function shuffle(arr) {
+          for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+          }
+        }
 
-      // 1️⃣ 최초 이미지 확정
-      $a.attr("src", "./img/renewal/main-bg-01.webp").addClass("active");
-      $b.removeClass("active");
+        let index = 0;
+        let currentIsA = true;
 
-      function changeBg() {
-        const num = String(index).padStart(2, "0");
-        const src = `./img/renewal/main-bg-${num}.webp`;
+        const $a = $(".bg-a");
+        const $b = $(".bg-b");
 
-        const $current = currentIsA ? $a : $b;
-        const $next = currentIsA ? $b : $a;
+        $a.attr("src", "./img/renewal/main-bg-01.webp").addClass("active");
+        $b.removeClass("active");
 
-        $next.attr("src", src).addClass("active");
-        $current.removeClass("active");
+        shuffle(pool);
+        pool = pool.filter((n) => n !== 1);
 
-        currentIsA = !currentIsA;
-        index = index >= total ? 1 : index + 1;
-      }
+        function changeBg() {
+          if (index >= pool.length) {
+            pool = Array.from({ length: TOTAL }, (_, i) => i + 1);
+            shuffle(pool);
+            index = 0;
+          }
 
-      setInterval(changeBg, 3000);
+          const num = pool[index];
+          const src = `./img/renewal/main-bg-${String(num).padStart(2, "0")}.webp`;
+
+          const $current = currentIsA ? $a : $b;
+          const $next = currentIsA ? $b : $a;
+
+          $next.attr("src", src).addClass("active");
+          $current.removeClass("active");
+
+          currentIsA = !currentIsA;
+          index++;
+        }
+
+        setTimeout(() => {
+          changeBg();
+          setInterval(changeBg, 3000);
+        }, 3000);
+      });
     });
   </script>
 </html>
